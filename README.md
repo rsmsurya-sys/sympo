@@ -7,7 +7,7 @@ A single-page dark-themed tactical command center website for **INTELLIGENZ 2K26
 ### 💻 Tech Events
 1. **Innov Expo**: Display working AI/ML prototypes, hardware IoT models, or software applications.
 2. **Prompt-a-thon**: Master generative AI models to solve complex imagery and code generation tasks.
-3. **Idea Unbound**: Present research papers on Neural Networks, Quantum AI, and Data Privacy.
+3. **Paper Talks**: Present research papers on Neural Networks, Quantum AI, and Data Privacy.
 4. **Workshop**: `Workshop : [                           ]` *(Title space left open for upcoming topic announcement)*.
 
 ### 🎮 Non-Tech Events

@@ -254,7 +254,7 @@
             you to the National Level Technical Symposium: <strong>"INTELLI-GENZ 2K26"</strong>.
           </p>
           <p>
-            Featuring intense technical operations—Innov Expo, Prompt-a-thon, Idea Unbound, and Hands-on
+            Featuring intense technical operations—Innov Expo, Prompt-a-thon, Paper Talks, and Hands-on
             Workshops—alongside high-adrenaline non-technical battlegrounds like Esport Gaming (Free Fire) and IPL
             Auction.
           </p>
@@ -277,7 +277,7 @@
           </div>
           <div class="feature-box tactical-box">
             <i class="fas fa-file-alt feature-icon"></i>
-            <h4 class="feature-title">Idea Unbound</h4>
+            <h4 class="feature-title">Paper Talks</h4>
             <p class="feature-desc">Present research papers in cutting-edge tech.</p>
           </div>
           <div class="feature-box tactical-box">
@@ -363,7 +363,7 @@
               <span class="badge-tactical badge-cyan">🚀 SESSIONS</span>
             </div>
             <h3 class="timeline-title">Event Sessions</h3>
-            <p class="timeline-desc">Parallel Tracks • Technical Events (Innov Expo, Prompt-a-thon, Idea Unbound, Workshop) • Non-Tech Events</p>
+            <p class="timeline-desc">Parallel Tracks • Technical Events (Innov Expo, Prompt-a-thon, Paper Talks, Workshop) • Non-Tech Events</p>
           </div>
         </div>
 
@@ -414,54 +414,62 @@
   </section>
 
   <!-- ==========================================================================
-       7. QUICK ACTIONS SECTION
+       7. QUICK ACTIONS & OPERATIVE TOOLKIT SECTION
        ========================================================================== -->
   <section class="quick-actions-section" id="quick-actions">
     <div class="container">
       <!-- Standard Two-Line Heading -->
       <div class="section-heading-group">
-        <span class="section-caption">Direct Directives</span>
-        <h2 class="section-title">Quick <span>Actions</span></h2>
+        <span class="section-caption">Direct Directives &amp; Participant Resources</span>
+        <h2 class="section-title">Symposium Operative <span>Toolkit</span></h2>
       </div>
 
       <div class="quick-actions-grid">
+        <!-- 1. Instant Pass Register -->
         <div class="action-card tactical-box" onclick="location.href='register.html'">
           <div class="action-icon-wrapper">
-            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-bolt"></i>
           </div>
           <div class="action-info">
-            <h4>Quick Register</h4>
-            <p>Secure event pass tickets via official booking portal.</p>
+            <h4>Instant Pass Register</h4>
+            <p>Secure entry pass (₹300) with instant QR ticket confirmation &amp; access to all events.</p>
+            <span class="action-badge"><i class="fas fa-ticket-alt"></i> ₹300 / Operative</span>
           </div>
         </div>
 
-        <div class="action-card tactical-box" onclick="alert('Rulebook PDF downloading...')">
+        <!-- 2. Interactive Rulebook -->
+        <div class="action-card card-cyan tactical-box" onclick="openModal('rulebookModal')">
           <div class="action-icon-wrapper">
-            <i class="fas fa-file-pdf"></i>
+            <i class="fas fa-book-open"></i>
           </div>
           <div class="action-info">
-            <h4>Download Rulebook</h4>
-            <p>Retrieve operational guidelines & scoring matrices.</p>
+            <h4>Official Rulebook</h4>
+            <p>Interactive dossier containing rules, slide deck specs &amp; judging matrices.</p>
+            <span class="action-badge" style="background: rgba(0, 240, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);"><i class="fas fa-file-alt"></i> View Guidelines</span>
           </div>
         </div>
 
-        <div class="action-card tactical-box" onclick="window.open('https://discord.com', '_blank')">
+        <!-- 4. Spot Support & Helpline -->
+        <div class="action-card tactical-box" onclick="openModal('helpdeskModal')">
           <div class="action-icon-wrapper">
-            <i class="fab fa-discord"></i>
+            <i class="fab fa-whatsapp"></i>
           </div>
           <div class="action-info">
-            <h4>Join Discord HQ</h4>
-            <p>Connect to live command chat for real-time announcements.</p>
+            <h4>Spot Support &amp; Helpline</h4>
+            <p>Direct WhatsApp command desk for spot registration &amp; emergency team assistance.</p>
+            <span class="action-badge"><i class="fas fa-headset"></i> 24/7 Desk Active</span>
           </div>
         </div>
 
-        <div class="action-card tactical-box" onclick="location.href='#accommodation'">
+        <!-- 5. Mess Rations & Food Protocols -->
+        <div class="action-card card-cyan tactical-box" onclick="openModal('foodModal')">
           <div class="action-icon-wrapper">
-            <i class="fas fa-bed"></i>
+            <i class="fas fa-utensils"></i>
           </div>
           <div class="action-info">
-            <h4>Lodging Request</h4>
-            <p>Apply for campus hostel accommodation via Google Form.</p>
+            <h4>Mess Rations &amp; Meals</h4>
+            <p>Complimentary welcome tea, grand mess lunch &amp; high-tea schedules.</p>
+            <span class="action-badge" style="background: rgba(0, 240, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);"><i class="fas fa-hamburger"></i> Included in Pass</span>
           </div>
         </div>
       </div>
@@ -513,13 +521,13 @@
           </div>
         </div>
 
-        <!-- Tech 3: Idea Unbound -->
+        <!-- Tech 3: Paper Talks -->
         <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=paper-presentation'">
           <div class="event-card-top">
             <span class="event-icon-badge">📄</span>
             <span class="badge-tactical">Research</span>
           </div>
-          <h3 class="event-title">Idea Unbound</h3>
+          <h3 class="event-title">Paper Talks</h3>
           <p class="event-desc">Present research papers on cutting-edge AI and data science topics</p>
           <div class="event-meta">
             <span><i class="fas fa-tag"></i> Track: Research</span>
@@ -608,11 +616,11 @@
         </div>
       </div>
 
-      <!-- Key Dignitaries & Faculty Leaders -->
+      <!-- Key Dignitaries & Faculty Leadership -->
       <div class="team-category-title">
         <i class="fas fa-user-tie"></i> Key Dignitaries &amp; Faculty Leadership
       </div>
-      <div class="team-grid">
+      <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 750px; margin: 0 auto 3rem auto;">
         <!-- Felicitation -->
         <div class="team-card tactical-box">
           <div class="team-avatar">
@@ -632,25 +640,72 @@
           <p class="team-dept">Convener, Head / AI&amp;DS</p>
           <span class="badge-tactical badge-cyan">will Welcome the gathering</span>
         </div>
+      </div>
 
-        <!-- Coordinator -->
+      <!-- Staff Coordinators -->
+      <div class="team-category-title">
+        <i class="fas fa-user-shield"></i> Staff Coordinators
+      </div>
+      <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 750px; margin: 0 auto 3rem auto;">
+        <!-- Coordinator 1: Ms. M. Sowmiya -->
         <div class="team-card tactical-box">
           <div class="team-avatar">
             <i class="fas fa-user-shield"></i>
           </div>
-          <h4 class="team-name">Ms. M. SOWMIYA</h4>
-          <p class="team-dept">AP / AI&amp;DS, Coordinator</p>
-          <span class="badge-tactical badge-cyan">Symposium Coordinator</span>
+          <h4 class="team-name">Mrs. M. SOWMIYA</h4>
+          <p>9500625570</p>
+          <p class="team-dept">AP / AI&amp;DS, Staff Coordinator</p>
+          <span class="badge-tactical badge-cyan">Staff Coordinator</span>
+        </div>
+
+        <!-- Coordinator 2: Ms. Thangaponnu -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h4 class="team-name">Mrs. V. THANGAPONNU</h4>
+          <p>8122870770</p>
+          <p class="team-dept">AP / AI&amp;DS, Staff Coordinator</p>
+          <span class="badge-tactical badge-cyan">Staff Coordinator</span>
         </div>
       </div>
-      <!-- Coordinator -->
+
+      <!-- Student Coordinators Section -->
+      <div class="team-category-title">
+        <i class="fas fa-user-graduate"></i> Student Coordinators
+      </div>
+      <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 950px; margin: 0 auto 3rem auto;">
+        <!-- Student Coordinator 1 -->
         <div class="team-card tactical-box">
-          <div class="team-avatar">
-            <i class="fas fa-user-shield"></i>
+          <div class="team-avatar" style="border-color: var(--accent-green); color: var(--accent-green);">
+            <i class="fas fa-user-graduate"></i>
           </div>
-          <h4 class="team-name">Ms. THANGAPONNU</h4>
-          <p class="team-dept">AP / AI&amp;DS, Coordinator</p>
-          <span class="badge-tactical badge-cyan">Symposium Coordinator</span>
+          <h4 class="team-name">Mr. M. PARTHIPAN</h4>
+          <p>8778910842</p>
+          <p class="team-dept">Student Coordinator, AI&amp;DS</p>
+          <span class="badge-tactical">Student Lead</span>
+        </div>
+
+        <!-- Student Coordinator 2 -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar" style="border-color: var(--accent-green); color: var(--accent-green);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h4 class="team-name">Student Coordinator</h4>
+          <p>12345678</p>
+          <p class="team-dept">Student Coordinator, AI&amp;DS</p>
+          <span class="badge-tactical">Student Lead</span>
+        </div>
+
+        <!-- Student Coordinator 3 -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar" style="border-color: var(--accent-green); color: var(--accent-green);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h4 class="team-name">Student Coordinator</h4>
+          <p>12345678</p>
+          <p class="team-dept">Student Coordinator, AI&amp;DS</p>
+          <span class="badge-tactical">Student Lead</span>
         </div>
       </div>
 
@@ -709,7 +764,7 @@
 
       <div class="accommodation-card tactical-box">
         <div style="text-align: center; margin-bottom: 1.5rem;">
-          <div class="badge-tactical badge-cyan" style="margin-bottom: 0.5rem;">HOSTEL BARRACKS CLEARANCE</div>
+          <div class="badge-tactical badge-cyan" style="margin-bottom: 0.5rem;">.....</div>
           <div class="acc-price-tag">FEE: ₹300 <span></span></div>
           <p style="color: var(--text-secondary);">Secure campus housing at Mahendra College of Engineering.</p>
         </div>
@@ -765,7 +820,7 @@
           </div>
           <div class="map-iframe-container">
             <iframe
-              src="https://maps.google.com/maps?q=https://maps.app.goo.gl/5B6TnnpnXJMTeKta8&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Mahendra+College+of+Engineering,+Attur+Main+Road,+Minnampalli,+Salem+-+636106&t=&z=16&ie=UTF8&iwloc=B&output=embed"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
@@ -899,15 +954,15 @@
             <div class="contact-card-item tactical-box">
               <div class="contact-icon"><i class="fas fa-headset"></i></div>
               <div class="contact-details">
-                <h5>Symposium Coordinator</h5>
+                <h5>Staff Coordinator</h5>
                 <p>Ms. M. SOWMIYA (AP / AI&amp;DS)</p>
               </div>
             </div>
             <div class="contact-card-item tactical-box">
               <div class="contact-icon"><i class="fas fa-headset"></i></div>
               <div class="contact-details">
-                <h5>Symposium Coordinator</h5>
-                <p>Ms. THANGAPONNU (AP / AI&amp;DS)</p>
+                <h5>Staff Coordinator</h5>
+                <p>Ms. V. THANGAPONNU (AP / AI&amp;DS)</p>
               </div>
             </div>
 
@@ -988,6 +1043,150 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==========================================================================
+       TACTICAL MODALS SYSTEM (INTERACTIVE OPERATIVE TOOLKIT)
+       ========================================================================== -->
+
+  <!-- 1. Rulebook Modal -->
+  <div class="tactical-modal-overlay" id="rulebookModal">
+    <div class="tactical-modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-book-open"></i> OFFICIAL OPERATIONAL RULEBOOK
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('rulebookModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="badge-tactical badge-cyan" style="margin-bottom: 1rem;">INTELLI-GENZ 2K26 COMPLIANCE PROTOCOL</div>
+        <h4 style="font-family: var(--font-mono); color: #fff; margin-bottom: 0.5rem;">General Participant Directives</h4>
+        <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-left: 1.2rem; margin-bottom: 1.2rem;">
+          <li>Valid College Student ID Card &amp; Entry Pass QR mandatory for campus admittance.</li>
+          <li>All registered operatives are eligible to participate in 1 Tech + 1 Non-Tech event track.</li>
+          <li>Jury decision is absolute and unchallengeable across all battle sectors.</li>
+          <li>Formal / Professional attire recommended during presentation rounds.</li>
+        </ul>
+
+        <h4 style="font-family: var(--font-mono); color: var(--accent-green); margin-bottom: 0.5rem;">Presentation Deck Standards</h4>
+        <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-left: 1.2rem; margin-bottom: 1.5rem;">
+          <li>PPT format (16:9 aspect ratio) or IEEE research paper format required for Paper Talks &amp; Innov Expo.</li>
+          <li>Maximum 10 slides per deck. 8 Minutes presentation + 4 Minutes Jury Q&amp;A.</li>
+        </ul>
+
+        <div style="text-align: right; border-top: 1px solid var(--border-dim); padding-top: 1rem;">
+          <button class="btn-primary" onclick="alert('Downloading Official INTELLI-GENZ 2K26 Rulebook PDF...'); closeModal('rulebookModal');" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+            <i class="fas fa-download"></i> DOWNLOAD RULEBOOK PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Transit Bus Routes Modal -->
+  <div class="tactical-modal-overlay" id="transitModal">
+    <div class="tactical-modal" style="border-color: rgba(255, 183, 3, 0.4);">
+      <div class="modal-header" style="border-color: rgba(255, 183, 3, 0.2);">
+        <div class="modal-title" style="color: var(--accent-amber);">
+          <i class="fas fa-bus-alt"></i> CAMPUS BUS TRANSIT &amp; ROUTES
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('transitModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="badge-tactical badge-amber" style="margin-bottom: 1rem;">COMPLIMENTARY PICKUP STATIONS</div>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">
+          Free college buses will be stationed at key transportation hubs across Salem on <strong>09.10.2026</strong>. Look for <em>"Mahendra College of Engineering"</em> bus banners.
+        </p>
+
+        <div style="display: grid; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 1rem;">
+            <div style="font-family: var(--font-mono); color: #fff; font-weight: 700;"><i class="fas fa-train" style="color: var(--accent-amber);"></i> Salem Junction Railway Station</div>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-top: 0.2rem;">Pickup Time: <strong>07:45 AM</strong> | Bus No. 12</div>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 1rem;">
+            <div style="font-family: var(--font-mono); color: #fff; font-weight: 700;"><i class="fas fa-bus" style="color: var(--accent-amber);"></i> Salem New Bus Stand (Central Terminal)</div>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-top: 0.2rem;">Pickup Time: <strong>08:00 AM</strong> | Bus No. 45 &amp; 88</div>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 1rem;">
+            <div style="font-family: var(--font-mono); color: #fff; font-weight: 700;"><i class="fas fa-map-pin" style="color: var(--accent-amber);"></i> Government Public Buses</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); font-family: var(--font-mono); margin-top: 0.2rem;">Board any Salem to Attur bus and drop at <strong>Minnampalli College Stop</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Spot Support Helpdesk Modal -->
+  <div class="tactical-modal-overlay" id="helpdeskModal">
+    <div class="tactical-modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fab fa-whatsapp"></i> LIVE SPOT HELPDESK &amp; SUPPORT
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('helpdeskModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="badge-tactical" style="margin-bottom: 1rem;">DIRECT COMMAND LINE</div>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.2rem;">
+          Have questions regarding spot registration, team slots, or transportation? Contact our command leads directly:
+        </p>
+
+        <div style="display: grid; gap: 1rem; margin-bottom: 1.5rem;">
+          <a href="https://wa.me/91 8778910842" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+            <div style="background: rgba(0, 255, 102, 0.08); border: 1px solid var(--border-green); padding: 1rem; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-family: var(--font-mono); color: #fff; font-weight: 700;">Mr. M. parthipan (Student Coordinator)</div>
+                <div style="font-size: 0.85rem; color: var(--accent-green); font-family: var(--font-mono);"><i class="fab fa-whatsapp"></i> +91 8778910842 </div>
+              </div>
+              <span class="badge-tactical" style="font-size: 0.7rem;">CHAT ON WHATSAPP</span>
+            </div>
+          </a>
+
+          <a href="https://wa.me/91 9500625570" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+            <div style="background: rgba(0, 240, 255, 0.08); border: 1px solid var(--border-cyan); padding: 1rem; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-family: var(--font-mono); color: #fff; font-weight: 700;">Mrs. M. Sowmiya (Faculty Coordinator)</div>
+                <div style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono);"><i class="fas fa-phone-alt"></i> +91 9500625570</div>
+              </div>
+              <span class="badge-tactical badge-cyan" style="font-size: 0.7rem;">CALL COORDINATOR</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Mess Rations & Meals Modal -->
+  <div class="tactical-modal-overlay" id="foodModal">
+    <div class="tactical-modal" style="border-color: var(--border-cyan);">
+      <div class="modal-header" style="border-color: var(--border-cyan);">
+        <div class="modal-title" style="color: var(--accent-cyan);">
+          <i class="fas fa-utensils"></i> MESS RATIONS &amp; MEAL PROTOCOLS
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('foodModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="badge-tactical badge-cyan" style="margin-bottom: 1rem;">FREE REFRESHMENTS INCLUDED WITH PASS</div>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.2rem;">
+          Every registered participant holding an entry pass ticket receives full access to campus mess dining rations throughout the 1-day symposium.
+        </p>
+
+        <div style="display: grid; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.88rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 0.8rem 1rem; display: flex; justify-content: space-between;">
+            <span style="color: #fff;"><i class="fas fa-coffee" style="color: var(--accent-amber);"></i> Morning Welcome Tea &amp; Snacks</span>
+            <span style="color: var(--accent-cyan);">11:00 AM - 11:15 AM</span>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 0.8rem 1rem; display: flex; justify-content: space-between;">
+            <span style="color: #fff;"><i class="fas fa-drumstick-bite" style="color: var(--accent-green);"></i> Grand Symposium Mess Lunch</span>
+            <span style="color: var(--accent-green);">01:00 PM - 02:00 PM</span>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dim); padding: 0.8rem 1rem; display: flex; justify-content: space-between;">
+            <span style="color: #fff;"><i class="fas fa-cookie-bite" style="color: var(--accent-amber);"></i> Evening High-Tea &amp; Snacks</span>
+            <span style="color: var(--accent-amber);">03:00 PM - 03:15 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main JavaScript File -->
   <script src="assets/js/main.js"></script>

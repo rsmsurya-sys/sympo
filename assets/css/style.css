@@ -1298,6 +1298,79 @@ img {
 }
 
 /* ==========================================================================
+   DIGNITARIES & ORGANIZING TEAM SECTION
+   ========================================================================== */
+.team-section-container {
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--border-dim);
+  background: var(--bg-dark);
+}
+
+.team-category-title {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--accent-cyan);
+  border-bottom: 1px dashed var(--border-cyan);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.team-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-dim);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.team-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+}
+
+.team-name {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.team-dept {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+/* ==========================================================================
    FAQS SECTION
    ========================================================================== */
 .faq-section {
@@ -1891,4 +1964,181 @@ textarea.form-control {
     flex-wrap: wrap;
     gap: 0.8rem;
   }
+}
+
+/* ==========================================================================
+   INTERACTIVE QUICK ACTIONS TOOLKIT & MODALS SYSTEM
+   ========================================================================== */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.action-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-green);
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--accent-green);
+  transition: width 0.3s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-green);
+  box-shadow: 0 10px 30px rgba(0, 255, 102, 0.15);
+}
+
+.action-card:hover::after {
+  width: 6px;
+}
+
+.action-card.card-cyan::after { background: var(--accent-cyan); }
+.action-card.card-cyan:hover { border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15); }
+
+.action-card.card-amber::after { background: var(--accent-amber); }
+.action-card.card-amber:hover { border-color: var(--accent-amber); box-shadow: 0 10px 30px rgba(255, 183, 3, 0.15); }
+
+.action-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid var(--border-green);
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border-radius: 4px;
+}
+
+.action-card.card-cyan .action-icon-wrapper {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--border-cyan);
+  color: var(--accent-cyan);
+}
+
+.action-card.card-amber .action-icon-wrapper {
+  background: rgba(255, 183, 3, 0.1);
+  border-color: rgba(255, 183, 3, 0.4);
+  color: var(--accent-amber);
+}
+
+.action-info h4 {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+.action-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.action-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  background: rgba(0, 255, 102, 0.15);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+}
+
+/* Modal Overlay & Dialog Styles */
+.tactical-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.tactical-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tactical-modal {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-green);
+  box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.tactical-modal-overlay.active .tactical-modal {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-dim);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: 1px solid var(--border-dim);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  border-color: #ff0055;
+  color: #ff0055;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
 }

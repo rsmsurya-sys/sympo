@@ -260,7 +260,7 @@ function initTerminalCLI() {
         break;
 
       case 'events':
-        appendTerminalLine('[TECH]: Innov Expo | Prompt-a-thon | Idea Unbound | Workshop');
+        appendTerminalLine('[TECH]: Innov Expo | Prompt-a-thon | Paper Talks | Workshop');
         appendTerminalLine('[NON-TECH]: Esport Gaming (Free Fire) | IPL Auction');
         break;
 
@@ -345,3 +345,30 @@ function initDispatchForm() {
     });
   }
 }
+
+/* ==========================================================================
+   9. TACTICAL MODAL HANDLERS
+   ========================================================================== */
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modals when clicking backdrop
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('tactical-modal-overlay')) {
+    e.target.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
