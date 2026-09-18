@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation & Ticket Checkout | INTELLIGENZ 2K26</title>
+  <meta name="description" content="Official Registration & Ticket Checkout for INTELLIGENZ 2K26 1-Day National Level Technical Symposium.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .checkout-page {
+      padding: 3rem 0 6rem 0;
+    }
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 992px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-section-title {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--accent-cyan);
+      border-bottom: 1px solid var(--border-dim);
+      padding-bottom: 0.5rem;
+      margin: 1.8rem 0 1.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.4rem;
+    }
+    .radio-option, .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .radio-option input, .checkbox-option input {
+      accent-color: var(--accent-green);
+      width: 16px;
+      height: 16px;
+    }
+    .summary-card {
+      position: sticky;
+      top: 100px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-green);
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+      padding: 2rem;
+    }
+    .summary-event-banner {
+      background: linear-gradient(135deg, rgba(0, 255, 102, 0.15), rgba(0, 240, 255, 0.15));
+      border: 1px solid var(--border-cyan);
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .summary-total {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      border-top: 1px solid var(--border-dim);
+      padding-top: 1rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .trust-badge-group {
+      margin-top: 1.8rem;
+      border-top: 1px solid var(--border-dim);
+      padding-top: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .trust-badge-group i {
+      color: var(--accent-cyan);
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. NAVIGATION & HUD STATUS BAR
+       ========================================================================== -->
+  <div class="header-wrapper">
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html#hero" class="nav-brand">
+          <i class="fas fa-microchip brand-icon"></i>
+          <span class="brand-title">INTELLIGENZ<span>_2K26</span></span>
+        </a>
+        
+        <a href="index.html" class="btn-nav-cta">
+          <i class="fas fa-arrow-left"></i> RETURN TO MAIN HQ
+        </a>
+      </div>
+    </nav>
+
+    <!-- Sticky HUD Status Bar -->
+    <div class="hud-status-strip">
+      <div class="hud-status-content">
+        <div class="hud-left">
+          <div class="hud-item">
+            <span class="status-dot"></span>
+            <span class="hud-label">STATUS:</span>
+            <span class="hud-val">SECURE CHECKOUT ENCRYPTION ACTIVE</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-item">
+            <span class="hud-label">GATEWAY:</span>
+            <span class="hud-val cyan">TICKET9 ENCRYPTED</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">LOCAL CLOCK:</span>
+            <span class="hud-val cyan" id="hudLocalClock">--:--:-- IST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. CHECKOUT MAIN CONTAINER
+       ========================================================================== -->
+  <main class="checkout-page">
+    <div class="container">
+      <div class="checkout-grid">
+
+        <!-- Left Form Column: Booking Confirmation -->
+        <div class="booking-form-wrapper tactical-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-dim); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+            <h2 style="font-family: var(--font-heading); color: var(--text-primary); font-size: 1.8rem;">
+              Booking Confirmation
+            </h2>
+            <span class="badge-tactical badge-cyan">PASS CLEARANCE</span>
+          </div>
+
+          <form id="bookingConfirmationForm">
+            <!-- 1. Personal Information -->
+            <div class="form-section-title">
+              <i class="fas fa-user-shield"></i> Personal Credentials
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="regName">NAME *</label>
+                <input type="text" id="regName" class="form-control" placeholder="Operative Full Name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regEmail">EMAIL *</label>
+                <input type="email" id="regEmail" class="form-control" placeholder="example@gmail.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="regMobile">MOBILE NUMBER *</label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <span class="badge-tactical" style="padding: 0.75rem 0.8rem; font-size: 0.9rem;">+91</span>
+                  <input type="tel" id="regMobile" class="form-control" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regAltMobile">ALTERNATE NUMBER *</label>
+                <input type="tel" id="regAltMobile" class="form-control" placeholder="Alternate phone number" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">GENDER *</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="gender" value="Male" required checked> Male
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="gender" value="Female"> Female
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="gender" value="Other"> Other
+                </label>
+              </div>
+            </div>
+
+            <!-- 2. Academic & District Details -->
+            <div class="form-section-title">
+              <i class="fas fa-university"></i> Academic &amp; Location Intel
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="regCollege">COLLEGE NAME *</label>
+                <input type="text" id="regCollege" class="form-control" placeholder="Institution / College Name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regDept">DEPARTMENT NAME *</label>
+                <input type="text" id="regDept" class="form-control" placeholder="e.g. AI&amp;DS, CSE, ECE" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="regDistrict">DISTRICT *</label>
+                <input type="text" id="regDistrict" class="form-control" placeholder="District name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regPincode">PINCODE *</label>
+                <input type="text" id="regPincode" class="form-control" placeholder="6-digit Pincode" required pattern="[0-9]{6}">
+              </div>
+            </div>
+
+            <!-- 3. Event Selection -->
+            <div class="form-section-title">
+              <i class="fas fa-layer-group"></i> Select Target TECHNICAL Events SELECT(2) *
+            </div>
+
+            <div class="checkbox-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="Innov Expo" checked> Innov Expo (AI/ML)
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="Prompt-a-thon"> Prompt-a-thon (GenAI)
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="Idea Unbound"> Idea Unbound (Paper Presentation)
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="Workshop"> Hands-on Workshop
+              </label>
+
+              <div class="form-section-title">
+              <i class="fas fa-layer-group"></i> Select Target NON TECHNICAL EVENT (1) *
+            </div>
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="Esport Gaming"> Esport Gaming (Free Fire)
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="events" value="IPL Auction"> IPL Tactical Auction
+              </label>
+            </div>
+
+            <!-- 4. Referral & Source Details -->
+            <div class="form-section-title">
+              <i class="fas fa-share-alt"></i> Referral Intelligence
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1.2rem;">
+              <label class="form-label">REFERRED BY ANYONE FROM INSTITUTION? *</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="referred" value="Yes"> Yes
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="referred" value="No" checked> No
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1.2rem;">
+              <label class="form-label">SOURCE OF INFORMATION / REFERRED BY *</label>
+              <div class="radio-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
+                <label class="radio-option">
+                  <input type="radio" name="source" value="Social Media" checked> Social Media
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="source" value="WhatsApp"> WhatsApp
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="source" value="College / Institution"> College / Institution
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="source" value="Friends / Colleagues"> Friends / Colleagues
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="source" value="Previous Participant"> Previous Participant
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="source" value="Other"> Other
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label class="form-label">REFERRAL DEPARTMENT (IF APPLICABLE)</label>
+              <select class="form-control" id="regRefDept">
+                <option value="Artificial Intelligence and Data Science" selected>Artificial Intelligence and Data Science</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Mechatronics Engineering">Mechatronics Engineering</option>
+                <option value="CSE (Cyber Security)">CSE (Cyber Security)</option>
+                <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+              </select>
+            </div>
+
+            <!-- 5. Agreements & Submit -->
+            <div style="border-top: 1px solid var(--border-dim); padding-top: 1.2rem; margin-bottom: 1.5rem;">
+              <label class="checkbox-option" style="margin-bottom: 0.6rem;">
+                <input type="checkbox" id="chkAccount" checked> Create an account to manage booking
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" id="chkTerms" required checked> By continuing, you agree to <a href="#" style="color: var(--accent-cyan); text-decoration: underline; margin-left: 4px;">Terms &amp; Conditions</a>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 1rem;">
+              <i class="fas fa-lock"></i> CONFIRM &amp; PAY ₹300
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Column: Order & Ticket Summary Card -->
+        <div class="summary-card tactical-box">
+          <div class="summary-event-banner">
+            <h3 style="font-family: var(--font-heading); color: var(--accent-green); font-size: 1.4rem;">
+              INTELLIGENZ 2K26
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.3rem;">
+              <i class="fas fa-map-marker-alt" style="color: var(--accent-cyan);"></i> Department of AI&amp;DS, Tech Campus, Sector 4
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+              <i class="fas fa-calendar-alt"></i> October 9, 2026 | 09:00 AM
+            </p>
+          </div>
+
+          <div style="border-bottom: 1px solid var(--border-dim); padding-bottom: 1rem; margin-bottom: 1rem;">
+            <div class="summary-row">
+              <span>Ticket Name:</span>
+              <strong style="color: #fff;">1-Day Pass DAY-1</strong>
+            </div>
+            <div class="summary-row">
+              <span>Price &amp; Quantity:</span>
+              <strong style="color: var(--accent-cyan);">₹ 300 x 1</strong>
+            </div>
+            <div class="summary-row">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Includes convenience fees &amp; GST</span>
+              <span style="font-size: 0.75rem; color: var(--accent-green);">Included</span>
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Total Amount:</span>
+            <span>₹ 300.00</span>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badge-group">
+            <div>
+              <i class="fas fa-lock"></i>
+              <span>100% Secure Payment</span>
+            </div>
+            <div>
+              <i class="fas fa-user-check"></i>
+              <span>Trusted by Event-Goers</span>
+            </div>
+            <div>
+              <i class="fas fa-headset"></i>
+              <span>24/7 Command Support</span>
+            </div>
+          </div>
+
+          <!-- Guarantee Box -->
+          <div style="margin-top: 1.5rem; background: rgba(0, 255, 102, 0.08); border: 1px solid var(--border-green); padding: 0.8rem; border-radius: 4px; font-size: 0.78rem; color: var(--text-secondary); display: flex; gap: 0.6rem; align-items: flex-start;">
+            <i class="fas fa-shield-alt" style="color: var(--accent-green); font-size: 1.1rem; margin-top: 0.1rem;"></i>
+            <div>
+              <strong style="color: #fff;">Book with Confidence:</strong> Ticket9 guarantees refunds and verified clearance for all operatives.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Confirmation Modal -->
+  <div id="paymentSuccessModal" class="event-modal-overlay">
+    <div class="event-modal-content tactical-box" style="max-width: 550px; text-align: center; padding: 2.5rem 2rem;">
+      <div style="font-size: 3.5rem; color: var(--accent-green); margin-bottom: 1rem;">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 style="font-family: var(--font-heading); color: var(--accent-green); font-size: 2rem; margin-bottom: 0.5rem;">
+        BOOKING CONFIRMED!
+      </h2>
+      <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 1.2rem;">
+        PASS TRANSACTION ID: #INT2K26-PASS-88492
+      </p>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem;">
+        Your 1-Day Pass for <strong>INTELLIGENZ 2K26</strong> has been confirmed. Entry credentials &amp; QR code have been dispatched to your email.
+      </p>
+      <a href="index.html" class="btn-primary" style="justify-content: center; width: 100%;">
+        <i class="fas fa-home"></i> RETURN TO COMMAND HQ
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 INTELLIGENZ 2K26. AI&amp;DS DEPARTMENT. ALL RIGHTS RESERVED.</div>
+        <div>1-DAY NATIONAL LEVEL TECHNICAL SYMPOSIUM</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Real-time clock
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById('hudLocalClock').textContent = now.toLocaleTimeString('en-US', { hour12: false }) + ' IST';
+      }, 1000);
+
+      // Form submit handler
+      const form = document.getElementById('bookingConfirmationForm');
+      const successModal = document.getElementById('paymentSuccessModal');
+
+      if (form && successModal) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          successModal.classList.add('show');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

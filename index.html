@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTELLI-GENZ 2K26 | Mahendra College of Engineering | AI&DS Symposium</title>
+  <meta name="description"
+    content="INTELLI-GENZ 2K26 - One Day National Level Technical Symposium hosted by Department of Artificial Intelligence & Data Science, Mahendra College of Engineering, Salem.">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. FULL-SCREEN PRELOADER
+       ========================================================================== -->
+  <div id="preloader" role="dialog" aria-label="System Preloader">
+    <div class="preloader-box tactical-box">
+      <div class="preloader-header">
+        <div class="preloader-title">
+          <i class="fas fa-terminal"></i>
+          <span>INTELLI-GENZ_2K26 INITIALIZING_</span>
+        </div>
+        <div class="badge-tactical">SYS_VER 4.09</div>
+      </div>
+
+      <div class="preloader-logs" id="preloaderLogs">
+        <!-- Dynamic terminal logs appended here -->
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-info">
+          <span>PROGRESS_STATUS</span>
+          <span id="preloaderPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="preloaderProgress"></div>
+        </div>
+      </div>
+
+      <button class="preloader-skip" id="preloaderSkip">[ OVERRIDE / SKIP ]</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. NAVIGATION & HUD STATUS BAR
+       ========================================================================== -->
+  <div class="header-wrapper">
+    <!-- Sticky Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#hero" class="nav-brand">
+          <i class="fas fa-microchip brand-icon"></i>
+          <span class="brand-title">INTELLI<span>-GENZ 2K26</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#metrics" class="nav-link">Metrics</a></li>
+          <li><a href="#schedule" class="nav-link">Schedule</a></li>
+          <li><a href="#quick-actions" class="nav-link">Quick Actions</a></li>
+          <li><a href="#categories" class="nav-link">Categories</a></li>
+          <li><a href="#team" class="nav-link">Dignitaries &amp; Team</a></li>
+          <li><a href="#accommodation" class="nav-link">Accommodation</a></li>
+          <li><a href="#location" class="nav-link">Location</a></li>
+          <li><a href="#faqs" class="nav-link">FAQs</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+
+          <!-- Overflow Dropdown Menu -->
+          <li class="nav-item-dropdown">
+            <span class="nav-link dropdown-trigger" id="moreDropdownTrigger">
+              More <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            </span>
+            <div class="dropdown-menu" id="moreDropdownMenu">
+              <a href="#location" class="dropdown-item"><i class="fas fa-map-marked-alt"></i> Location Map</a>
+              <a href="#quick-actions" class="dropdown-item"><i class="fas fa-book"></i> Rulebook</a>
+              <a href="#categories" class="dropdown-item"><i class="fas fa-trophy"></i> Prize Pool</a>
+              <a href="#team" class="dropdown-item"><i class="fas fa-users"></i> Organizing Team</a>
+              <a href="#contact" class="dropdown-item"><i class="fas fa-users-cog"></i> Command Officers</a>
+              <a href="#hero" class="dropdown-item"><i class="fas fa-terminal"></i> Terminal CLI</a>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Registration CTA -->
+        <a href="register.html" class="btn-nav-cta">
+          <i class="fas fa-shield-alt"></i> REGISTER NOW
+        </a>
+
+        <div class="hamburger" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sticky HUD Status Bar -->
+    <div class="hud-status-strip">
+      <div class="hud-status-content">
+        <div class="hud-left">
+          <div class="hud-item">
+            <span class="status-dot"></span>
+            <span class="hud-label">STATUS:</span>
+            <span class="hud-val">ONLINE & ARMED</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">DEFCON:</span>
+            <span class="hud-val amber">DEFCON 1</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">ENCRYPTION:</span>
+            <span class="hud-val cyan">AES-256</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-item">
+            <span class="hud-label">SYS TEMP:</span>
+            <span class="hud-val">32°C</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">LOCAL CLOCK:</span>
+            <span class="hud-val cyan" id="hudLocalClock">--:--:-- IST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3. HERO SECTION
+       ========================================================================== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Text -->
+        <div class="hero-text-content">
+          <div class="hero-tag" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
+            <span class="badge-tactical"><i class="fas fa-university"></i> MAHENDRA COLLEGE OF ENGINEERING</span>
+            <span class="badge-tactical badge-cyan" style="font-size: 0.7rem;">APPROVED BY AICTE | AUTONOMOUS| NAAC 'A' GRADE</span>
+            <span class="badge-tactical badge-amber" style="font-size: 0.75rem;"><i class="fas fa-brain"></i> DEPARTMENT
+              OF ARTIFICIAL INTELLIGENCE &amp; DATA SCIENCE</span>
+          </div>
+          <h1 class="hero-heading" style="margin-top: 1rem;">
+            INTELLI-<span class="glitch-text">GENZ 2K26</span>
+          </h1>
+          <p
+            style="font-family: var(--font-mono); color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.6rem; letter-spacing: 1px;">
+            ONE DAY NATIONAL LEVEL TECHNICAL SYMPOSIUM
+          </p>
+          <p class="hero-subtext" style="font-style: italic;">
+            "Innovate, Learn, Build the Future" &bull; AI &amp; DS: Where Intelligence Meets Innovation
+          </p>
+
+          <div class="hero-actions">
+            <a href="register.html" class="btn-primary">
+              <i class="fas fa-lock-open"></i> INITIALIZE REGISTRATION
+            </a>
+            <a href="#categories" class="btn-secondary">
+              <i class="fas fa-layer-group"></i> EXPLORE SECTORS
+            </a>
+          </div>
+
+          <!-- Hero HUD Readout -->
+          <div class="hud-readout-line">
+            <i class="fas fa-calendar-check"></i> DATE: <span style="color: #fff;">09.10.2026 at 09.30 AM</span> |
+            VENUE: <span style="color: var(--accent-green);">MCE AUDITORIUM (Dr. A.P.J. Abdul Kalam Arangam)</span>
+          </div>
+        </div>
+
+        <!-- Hero Widgets: Countdown + Mini Terminal -->
+        <div class="hero-widgets">
+          <!-- Countdown Box -->
+          <div class="countdown-box tactical-box" style="margin-bottom: 1.5rem;">
+            <div class="countdown-box-header">
+              <div class="countdown-box-title">
+                <i class="fas fa-stopwatch"></i> EVENT COUNTDOWN
+              </div>
+              <span class="badge-tactical badge-cyan">09.10.2026 @ 09:30 AM</span>
+            </div>
+
+            <div class="countdown-grid">
+              <div class="countdown-card">
+                <div class="countdown-num" id="cdDays">00</div>
+                <div class="countdown-lbl">DAYS</div>
+              </div>
+              <div class="countdown-card">
+                <div class="countdown-num" id="cdHours">00</div>
+                <div class="countdown-lbl">HOURS</div>
+              </div>
+              <div class="countdown-card">
+                <div class="countdown-num" id="cdMinutes">00</div>
+                <div class="countdown-lbl">MINUTES</div>
+              </div>
+              <div class="countdown-card">
+                <div class="countdown-num" id="cdSeconds">00</div>
+                <div class="countdown-lbl">SECONDS</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Mini Terminal CLI Widget -->
+          <div class="hero-terminal">
+            <div class="terminal-topbar">
+              <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <span>intelli_genz_2k26_cli.exe</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-output" id="terminalOutput">
+                <div class="t-line">INTELLI-GENZ 2K26 TERMINAL CLI v4.09</div>
+                <div class="t-line">Mahendra College of Engineering - Dept of AI&amp;DS</div>
+                <div class="t-line">Type <span style="color: var(--accent-green)">"help"</span> for a list of available
+                  tactical directives.</div>
+              </div>
+              <div class="t-prompt-row">
+                <span class="t-prompt">&gt;</span>
+                <input type="text" class="t-input" id="terminalInput" placeholder="type 'help', 'events', 'register'..."
+                  autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. ABOUT SECTION
+       ========================================================================== -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">System Background & Heritage</span>
+        <h2 class="section-title">About <span>INTELLI-GENZ 2K26</span></h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text-content">
+          <p>
+            The Department of Artificial Intelligence & Data Science at <strong>Mahendra College of Engineering</strong>
+            (Approved by AICTE,Autonomous, Accredited by NAAC 'A' Grade, Salem) cordially invites
+            you to the National Level Technical Symposium: <strong>"INTELLI-GENZ 2K26"</strong>.
+          </p>
+          <p>
+            Featuring intense technical operations—Innov Expo, Prompt-a-thon, Idea Unbound, and Hands-on
+            Workshops—alongside high-adrenaline non-technical battlegrounds like Esport Gaming (Free Fire) and IPL
+            Auction.
+          </p>
+
+          <div class="badge-tactical badge-cyan" style="margin-top: 1rem;">
+            <i class="fas fa-certificate"></i> ONE DAY NATIONAL LEVEL TECHNICAL SYMPOSIUM
+          </div>
+        </div>
+
+        <div class="about-features-grid">
+          <div class="feature-box tactical-box">
+            <i class="fas fa-laptop-code feature-icon"></i>
+            <h4 class="feature-title">Innov Expo</h4>
+            <p class="feature-desc">Showcase innovation & working models.</p>
+          </div>
+          <div class="feature-box tactical-box">
+            <i class="fas fa-robot feature-icon"></i>
+            <h4 class="feature-title">Prompt-a-thon</h4>
+            <p class="feature-desc">Master generative AI & prompt engineering.</p>
+          </div>
+          <div class="feature-box tactical-box">
+            <i class="fas fa-file-alt feature-icon"></i>
+            <h4 class="feature-title">Idea Unbound</h4>
+            <p class="feature-desc">Present research papers in cutting-edge tech.</p>
+          </div>
+          <div class="feature-box tactical-box">
+            <i class="fas fa-tools feature-icon"></i>
+            <h4 class="feature-title">Hands-on Workshop</h4>
+            <p class="feature-desc">Practical learning & expert mentorship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. STATISTICS / METRICS SECTION
+       ========================================================================== -->
+  <section class="metrics-section" id="metrics">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Quantitative Telemetry</span>
+        <h2 class="section-title">Tactical <span>Statistics</span></h2>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card tactical-box">
+          <div class="metric-val">1000+</div>
+          <div class="metric-lbl">participants</div>
+          <div class="metric-sub">From 50+ Institutions</div>
+        </div>
+        <div class="metric-card tactical-box">
+          <div class="metric-val cyan">06</div>
+          <div class="metric-lbl">Main Battle Arenas</div>
+          <div class="metric-sub">4 Tech + 2 Non-Tech</div>
+        </div>
+        <div class="metric-card tactical-box">
+          <div class="metric-val">existing prices</div>
+          <div class="metric-lbl">Bounty Pool</div>
+          <div class="metric-sub">Cash Prizes & Trophies</div>
+        </div>
+        <div class="metric-card tactical-box">
+          <div class="metric-val cyan">100%</div>
+          <div class="metric-lbl">artificial Intelligence</div>
+          <div class="metric-sub">Encrypted Operations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. SCHEDULE / TIMELINE SECTION
+       ========================================================================== -->
+  <section class="schedule-section" id="schedule">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Operational Timeline</span>
+        <h2 class="section-title">Event <span>Timeline</span></h2>
+      </div>
+
+      <div class="timeline-container">
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item">
+          <div class="timeline-time-badge">10:00 AM – 11:30 AM</div>
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card tactical-box">
+            <div class="timeline-header">
+              <span class="timeline-phase">// PHASE 01</span>
+              <span class="badge-tactical">📝 BRIEFING</span>
+            </div>
+            <h3 class="timeline-title">Inauguration &amp; Welcome</h3>
+            <p class="timeline-desc">Registration • Opening Ceremony • Keynote Address by Chief Guest • Welcome by Dr.
+              R. Reka (HOD AI&amp;DS)</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-time-badge">11:30 AM – 02:00 PM</div>
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card tactical-box">
+            <div class="timeline-header">
+              <span class="timeline-phase">// PHASE 02</span>
+              <span class="badge-tactical badge-cyan">🚀 SESSIONS</span>
+            </div>
+            <h3 class="timeline-title">Event Sessions</h3>
+            <p class="timeline-desc">Parallel Tracks • Technical Events (Innov Expo, Prompt-a-thon, Idea Unbound, Workshop) • Non-Tech Events</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-time-badge">02:00 PM – 03:00 PM</div>
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card tactical-box">
+            <div class="timeline-header">
+              <span class="timeline-phase">// PHASE 03</span>
+              <span class="badge-tactical badge-amber">🍽️ REFUEL</span>
+            </div>
+            <h3 class="timeline-title">Lunch Break</h3>
+            <p class="timeline-desc">Refreshments • Networking • Interactive Sessions</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 4 -->
+        <div class="timeline-item">
+          <div class="timeline-time-badge">03:00 PM – 03:30 PM</div>
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card tactical-box">
+            <div class="timeline-header">
+              <span class="timeline-phase">// PHASE 04</span>
+              <span class="badge-tactical">🎯 JUDGING</span>
+            </div>
+            <h3 class="timeline-title">Final Rounds &amp; Judging</h3>
+            <p class="timeline-desc">Project Presentations • Gaming Finals • Panel Discussions</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 5 -->
+        <div class="timeline-item">
+          <div class="timeline-time-badge">03:30 PM – 04:30 PM</div>
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card tactical-box">
+            <div class="timeline-header">
+              <span class="timeline-phase">// PHASE 05</span>
+              <span class="badge-tactical badge-cyan">🏆 CEREMONY</span>
+            </div>
+            <h3 class="timeline-title">Valedictory &amp; Prize Distribution</h3>
+            <p class="timeline-desc">Felicitation by Dr. N. Mohanasundararaju (Principal) • Winner Announcement •
+              Closing Ceremony</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. QUICK ACTIONS SECTION
+       ========================================================================== -->
+  <section class="quick-actions-section" id="quick-actions">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Direct Directives</span>
+        <h2 class="section-title">Quick <span>Actions</span></h2>
+      </div>
+
+      <div class="quick-actions-grid">
+        <div class="action-card tactical-box" onclick="location.href='register.html'">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="action-info">
+            <h4>Quick Register</h4>
+            <p>Secure event pass tickets via official booking portal.</p>
+          </div>
+        </div>
+
+        <div class="action-card tactical-box" onclick="alert('Rulebook PDF downloading...')">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <div class="action-info">
+            <h4>Download Rulebook</h4>
+            <p>Retrieve operational guidelines & scoring matrices.</p>
+          </div>
+        </div>
+
+        <div class="action-card tactical-box" onclick="window.open('https://discord.com', '_blank')">
+          <div class="action-icon-wrapper">
+            <i class="fab fa-discord"></i>
+          </div>
+          <div class="action-info">
+            <h4>Join Discord HQ</h4>
+            <p>Connect to live command chat for real-time announcements.</p>
+          </div>
+        </div>
+
+        <div class="action-card tactical-box" onclick="location.href='#accommodation'">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-bed"></i>
+          </div>
+          <div class="action-info">
+            <h4>Lodging Request</h4>
+            <p>Apply for campus hostel accommodation via Google Form.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. CATEGORIES / EVENTS SECTION
+       ========================================================================== -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Sector Disciplines</span>
+        <h2 class="section-title">Events &amp; <span>Tracks</span></h2>
+      </div>
+
+      <!-- Tech Events Category -->
+      <div class="category-group-header">
+        <i class="fas fa-code"></i> TECHNICAL EVENTS
+      </div>
+
+      <div class="events-grid">
+        <!-- Tech 1: Innov Expo -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=project-expo'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">💻</span>
+            <span class="badge-tactical">AI/ML</span>
+          </div>
+          <h3 class="event-title">Innov Expo</h3>
+          <p class="event-desc">Showcase your innovative AI/ML projects and demonstrate technical excellence</p>
+          <div class="event-meta">
+            <span><i class="fas fa-tag"></i> Track: AI/ML</span>
+            <span><i class="fas fa-clock"></i> Technical Arena</span>
+          </div>
+        </div>
+
+        <!-- Tech 2: Prompt-a-thon -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=prompt-a-thon'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">🤖</span>
+            <span class="badge-tactical badge-cyan">Generative AI</span>
+          </div>
+          <h3 class="event-title">Prompt-a-thon</h3>
+          <p class="event-desc">Master the art of AI prompting through challenging creative tasks</p>
+          <div class="event-meta">
+            <span><i class="fas fa-tag"></i> Track: Generative AI</span>
+            <span><i class="fas fa-clock"></i> Technical Arena</span>
+          </div>
+        </div>
+
+        <!-- Tech 3: Idea Unbound -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=paper-presentation'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">📄</span>
+            <span class="badge-tactical">Research</span>
+          </div>
+          <h3 class="event-title">Idea Unbound</h3>
+          <p class="event-desc">Present research papers on cutting-edge AI and data science topics</p>
+          <div class="event-meta">
+            <span><i class="fas fa-tag"></i> Track: Research</span>
+            <span><i class="fas fa-clock"></i> Technical Arena</span>
+          </div>
+        </div>
+
+        <!-- Tech 4: Workshop -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=workshop'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">🔧</span>
+            <span class="badge-tactical badge-cyan">Learning</span>
+          </div>
+          <h3 class="event-title">Workshop</h3>
+          <p class="event-desc">Hands-on sessions on latest AI tools and technologies</p>
+          <div class="event-meta">
+            <span><i class="fas fa-tag"></i> Track: Learning</span>
+            <span><i class="fas fa-clock"></i> Technical Arena</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Events Category -->
+      <div class="category-group-header" style="color: var(--accent-green); border-color: var(--border-green);">
+        <i class="fas fa-gamepad"></i> NON-TECHNICAL EVENTS
+      </div>
+
+      <div class="events-grid">
+        <!-- Non Tech 1: Esport Gaming -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=esport-gaming'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">🎮</span>
+            <span class="badge-tactical badge-amber">Gaming</span>
+          </div>
+          <h3 class="event-title">Esport Gaming</h3>
+          <p class="event-desc">Free Fire tournament - compete with the best gamers</p>
+          <div class="event-meta">
+            <span><i class="fas fa-gamepad"></i> Free Fire</span>
+            <span><i class="fas fa-clock"></i> Non-Tech Arena</span>
+          </div>
+        </div>
+
+        <!-- Non Tech 2: IPL Auction -->
+        <div class="event-card tactical-box" onclick="location.href='event-detail.html?event=ipl-auction'">
+          <div class="event-card-top">
+            <span class="event-icon-badge">🏏</span>
+            <span class="badge-tactical badge-amber">Strategy</span>
+          </div>
+          <h3 class="event-title">IPL Auction</h3>
+          <p class="event-desc">Strategic team building through exciting IPL-style auction</p>
+          <div class="event-meta">
+            <span><i class="fas fa-chess"></i> Strategy</span>
+            <span><i class="fas fa-clock"></i> Non-Tech Arena</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. DIGNITARIES & ORGANIZING TEAM SECTION (EXACT DETAILS FROM POSTER)
+       ========================================================================== -->
+  <section class="team-section-container" id="team">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Behind INTELLI-GENZ 2K26</span>
+        <h2 class="section-title">Dignitaries &amp; <span>Organizing Team</span></h2>
+      </div>
+
+      <!-- Chief Guest Section -->
+      <div class="team-category-title">
+        <i class="fas fa-star" style="color: var(--accent-amber);"></i> Chief Guest
+      </div>
+      <div style="max-width: 600px; margin: 0 auto 3rem auto;">
+        <div class="team-card tactical-box"
+          style="border-color: var(--accent-amber); box-shadow: 0 0 25px rgba(255, 183, 3, 0.15);">
+          <div class="team-avatar" style="border-color: var(--accent-amber); color: var(--accent-amber);">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+          <h4 class="team-name" style="color: var(--accent-amber);">To be Announced</h4>
+          <p class="team-dept">Chief Guest for Technical Symposium</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.4rem;">
+            "Her presence and insights will inspire our young minds towards innovation and excellence."
+          </p>
+        </div>
+      </div>
+
+      <!-- Key Dignitaries & Faculty Leaders -->
+      <div class="team-category-title">
+        <i class="fas fa-user-tie"></i> Key Dignitaries &amp; Faculty Leadership
+      </div>
+      <div class="team-grid">
+        <!-- Felicitation -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h4 class="team-name">Dr. N. MOHANASUNDARARAJU</h4>
+          <p class="team-dept">Principal, Mahendra College of Engineering</p>
+          <span class="badge-tactical badge-cyan">will Felicitate the gathering</span>
+        </div>
+
+        <!-- Welcome Address & Convener -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h4 class="team-name">Dr. R. REKA</h4>
+          <p class="team-dept">Convener, Head / AI&amp;DS</p>
+          <span class="badge-tactical badge-cyan">will Welcome the gathering</span>
+        </div>
+
+        <!-- Coordinator -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h4 class="team-name">Ms. M. SOWMIYA</h4>
+          <p class="team-dept">AP / AI&amp;DS, Coordinator</p>
+          <span class="badge-tactical badge-cyan">Symposium Coordinator</span>
+        </div>
+      </div>
+      <!-- Coordinator -->
+        <div class="team-card tactical-box">
+          <div class="team-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h4 class="team-name">Ms. THANGAPONNU</h4>
+          <p class="team-dept">AP / AI&amp;DS, Coordinator</p>
+          <span class="badge-tactical badge-cyan">Symposium Coordinator</span>
+        </div>
+      </div>
+
+      <!-- Official Invitation Poster Docket Box -->
+      <div class="tactical-box" style="margin-top: 3rem; padding: 2rem; border-color: var(--border-cyan); background: linear-gradient(180deg, rgba(0, 240, 255, 0.05), transparent);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border-dim); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <span class="badge-tactical badge-amber" style="margin-bottom: 0.4rem;">OFFICIAL INVITATION DOCKET</span>
+            <h3 style="font-family: var(--font-mono); color: #fff; font-size: 1.2rem; margin: 0;">MAHENDRA COLLEGE OF ENGINEERING</h3>
+            <p style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-top: 0.2rem;">
+              MAHENDRA EDUCATION INSTITUTIONS — SINCE 1996 | ACCREDITED BY NAAC 'A' GRADE
+            </p>
+          </div>
+          <a href="register.html" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+            <i class="fas fa-ticket-alt"></i> CLAIM ENTRY PASS (₹300)
+          </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; font-family: var(--font-mono); font-size: 0.88rem;">
+          <div>
+            <div style="color: var(--accent-green); font-weight: 700; margin-bottom: 0.4rem;"><i class="fas fa-university"></i> Institution Details</div>
+            <p style="color: var(--text-secondary); line-height: 1.5; margin: 0;">
+              Approved by AICTE | Affiliated to Anna University<br>
+              Salem Campus, Attur Main Road, Minnampalli, Salem - 636 106.
+            </p>
+          </div>
+          <div>
+            <div style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;"><i class="fas fa-map-marker-alt"></i> Venue &amp; Schedule</div>
+            <p style="color: var(--text-secondary); line-height: 1.5; margin: 0;">
+              <strong>MCE AUDITORIUM</strong> (Dr. A.P.J. Abdul Kalam Arangam)<br>
+              Date: <strong>09.10.2026</strong> | Time: <strong>09:30 AM IST</strong>
+            </p>
+          </div>
+          <div>
+            <div style="color: var(--accent-amber); font-weight: 700; margin-bottom: 0.4rem;"><i class="fas fa-quote-left"></i> Official Taglines</div>
+            <p style="color: var(--text-secondary); line-height: 1.5; margin: 0; font-style: italic;">
+              "Innovate, Learn, Build the Future"<br>
+              "AI &amp; DS — Where Intelligence Meets Innovation"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. ACCOMMODATION SECTION
+       ========================================================================== -->
+  <section class="accommodation-section" id="accommodation">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Barracks & Lodging</span>
+        <h2 class="section-title">Accommodation <span>Protocols</span></h2>
+      </div>
+
+      <div class="accommodation-card tactical-box">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div class="badge-tactical badge-cyan" style="margin-bottom: 0.5rem;">HOSTEL BARRACKS CLEARANCE</div>
+          <div class="acc-price-tag">FEE: ₹300 <span></span></div>
+          <p style="color: var(--text-secondary);">Secure campus housing at Mahendra College of Engineering.</p>
+        </div>
+
+        <div class="accommodation-grid">
+          <!-- Column 1: Fee Includes -->
+          <div>
+            <h4 class="acc-column-title"><i class="fas fa-concierge-bell"></i> Fee Includes</h4>
+            <ul class="acc-list">
+              <li><i class="fas fa-utensils"></i> Dinner Rations &amp; Breakfast Mess Access</li>
+              <li><i class="fas fa-shield-virus"></i> 24/7 Campus Security &amp; Hot Water</li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Stay Duration & Rules -->
+          <div>
+            <h4 class="acc-column-title"><i class="fas fa-clipboard-list"></i> Stay Duration &amp; Rules</h4>
+            <ul class="acc-list">
+              <li><i class="fas fa-clock"></i> Check-in from 09:00 AM</li>
+              <li><i class="fas fa-id-card"></i> College ID Card Mandatory for Check-in</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc-cta-wrapper">
+          <a href="register.html" class="btn-primary">
+            <i class="fas fa-ticket-alt"></i> CLAIM ENTRY PASS (₹300)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. LOCATION DASHBOARD SECTION (MAHENDRA COLLEGE OF ENGINEERING)
+       ========================================================================== -->
+  <section class="location-dashboard-section" id="location">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Sector Target &amp; Coordinates</span>
+        <h2 class="section-title">Venue &amp; <span>Location Dashboard</span></h2>
+      </div>
+
+      <div class="location-grid">
+        <!-- Interactive Modern Dark Google Map Card -->
+        <div class="map-card-wrapper tactical-box">
+          <div class="map-card-header">
+            <div class="map-card-title">
+              <i class="fas fa-crosshairs"></i> MAHENDRA COLLEGE OF ENGINEERING (SALEM)
+            </div>
+            <span class="badge-tactical badge-cyan">GPS SYNC ACTIVE</span>
+          </div>
+          <div class="map-iframe-container">
+            <iframe
+              src="https://maps.google.com/maps?q=https://maps.app.goo.gl/5B6TnnpnXJMTeKta8&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Location Information Panel -->
+        <div class="location-info-panel">
+          <!-- Base Target Card -->
+          <div class="loc-detail-card tactical-box">
+            <div class="loc-detail-header">
+              <i class="fas fa-map-marked-alt"></i> VENUE HEADQUARTERS
+            </div>
+            <div class="loc-detail-text">
+              <strong>MCE AUDITORIUM (Dr. A.P.J. Abdul Kalam Arangam)</strong><br>
+              Mahendra College of Engineering,<br>
+              Salem Campus, Attur Main Road, Minnampalli, Salem - 636 106.
+            </div>
+          </div>
+
+          <!-- Navigation & Routes Card -->
+          <div class="loc-detail-card tactical-box">
+            <div class="loc-detail-header">
+              <i class="fas fa-route"></i> TRANSPORTATION INTEL
+            </div>
+            <ul class="loc-transport-list">
+              <li><i class="fas fa-bus"></i> <strong>Salem Bus Stand:</strong> Direct Highway Buses</li>
+              <li><i class="fas fa-subway"></i> <strong>Salem Railway Station:</strong> 25 Mins Transit</li>
+              <li><i class="fas fa-road"></i> <strong>Attur Main Road:</strong> Minnampalli Sector</li>
+            </ul>
+          </div>
+
+          <!-- Direct Google Maps Link Button -->
+          <a href="https://maps.app.goo.gl/5B6TnnpnXJMTeKta8" target="_blank" rel="noopener noreferrer"
+            class="btn-primary" style="justify-content: center; width: 100%;">
+            <i class="fas fa-directions"></i> OPEN IN GOOGLE MAPS
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. FAQS SECTION
+       ========================================================================== -->
+  <section class="faq-section" id="faqs">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Intel & Frequently Asked</span>
+        <h2 class="section-title">Tactical <span>FAQs</span></h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item tactical-box">
+          <div class="faq-header">
+            <div class="faq-question">
+              <span class="faq-query-code">[QUERY 001]</span> Who is eligible to participate in INTELLI-GENZ 2K26?
+            </div>
+            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+          </div>
+          <div class="faq-body">
+            All registered undergraduate and postgraduate engineering &amp; technical students with a valid college ID
+            card are eligible to participate.
+          </div>
+        </div>
+
+        <div class="faq-item tactical-box">
+          <div class="faq-header">
+            <div class="faq-question">
+              <span class="faq-query-code">[QUERY 002]</span> Can I participate in multiple events?
+            </div>
+            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+          </div>
+          <div class="faq-body">
+            Yes! You can register for multiple technical and non-technical events as long as their session timings do
+            not overlap.
+          </div>
+        </div>
+
+        <div class="faq-item tactical-box">
+          <div class="faq-header">
+            <div class="faq-question">
+              <span class="faq-query-code">[QUERY 003]</span> Where is the venue located?
+            </div>
+            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+          </div>
+          <div class="faq-body">
+            The symposium will take place at MCE Auditorium (Dr. A.P.J. Abdul Kalam Arangam), Mahendra College of
+            Engineering, Salem Campus, Attur Main Road, Minnampalli, Salem - 636 106.
+          </div>
+        </div>
+
+        <div class="faq-item tactical-box">
+          <div class="faq-header">
+            <div class="faq-question">
+              <span class="faq-query-code">[QUERY 004]</span> Will participation certificates be provided?
+            </div>
+            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+          </div>
+          <div class="faq-body">
+            Yes, official National Level participation certificates will be issued to all registered participants.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. CONTACT & COMMAND HQ SECTION
+       ========================================================================== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <!-- Standard Two-Line Heading -->
+      <div class="section-heading-group">
+        <span class="section-caption">Transmit Signal & Comms</span>
+        <h2 class="section-title">Command <span>HQ Contact</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info & Officers -->
+        <div class="contact-info-wrapper">
+          <div class="contact-info-list">
+            <div class="contact-card-item tactical-box">
+              <div class="contact-icon"><i class="fas fa-user-shield"></i></div>
+              <div class="contact-details">
+                <h5>Convener &amp; HOD</h5>
+                <p>Dr. R. REKA (Head / AI&amp;DS)</p>
+              </div>
+            </div>
+
+            <div class="contact-card-item tactical-box">
+              <div class="contact-icon"><i class="fas fa-headset"></i></div>
+              <div class="contact-details">
+                <h5>Symposium Coordinator</h5>
+                <p>Ms. M. SOWMIYA (AP / AI&amp;DS)</p>
+              </div>
+            </div>
+            <div class="contact-card-item tactical-box">
+              <div class="contact-icon"><i class="fas fa-headset"></i></div>
+              <div class="contact-details">
+                <h5>Symposium Coordinator</h5>
+                <p>Ms. THANGAPONNU (AP / AI&amp;DS)</p>
+              </div>
+            </div>
+
+            <div class="contact-card-item tactical-box">
+              <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+              <div class="contact-details">
+                <h5>Comms Frequency Email</h5>
+                <p>intelligenz2k24@gmail.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tactical-box">
+            <h5 style="font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 0.4rem;">
+              <i class="fas fa-map-marker-alt"></i> BASE COORDINATES
+            </h5>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+              Mahendra College of Engineering, Salem Campus, Attur Main Road, Minnampalli, Salem - 636 106.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dispatch Contact Form -->
+        <div class="dispatch-form tactical-box">
+          <h4 style="font-family: var(--font-mono); color: var(--accent-green); margin-bottom: 1rem;">
+            <i class="fas fa-paper-plane"></i> DISPATCH MESSAGE TO COMMAND
+          </h4>
+
+          <div id="dispatchStatus" style="display: none; margin-bottom: 1rem;"></div>
+
+          <form id="dispatchForm">
+            <div class="form-group">
+              <label class="form-label" for="callsign">OPERATIVE CALLSIGN / NAME</label>
+              <input type="text" id="callsign" class="form-control" placeholder="e.g. Alex Mercer" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">ENCRYPTED EMAIL</label>
+              <input type="email" id="email" class="form-control" placeholder="alex@domain.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">TRANSMISSION MESSAGE</label>
+              <textarea id="message" class="form-control" placeholder="Enter query details..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+              <i class="fas fa-broadcast-tower"></i> TRANSMIT SIGNAL
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <i class="fas fa-microchip"></i> INTELLI-GENZ_2K26
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#metrics">Metrics</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#categories">Categories</a>
+          <a href="#team">Team</a>
+          <a href="#accommodation">Accommodation</a>
+          <a href="#location">Location</a>
+          <a href="#faqs">FAQs</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 INTELLI-GENZ 2K26. Department of AI&amp;DS, Mahendra College of Engineering. All Rights
+          Reserved.</div>
+        <div>ONE DAY NATIONAL LEVEL TECHNICAL SYMPOSIUM</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
