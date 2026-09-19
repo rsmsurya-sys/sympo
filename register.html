@@ -207,8 +207,13 @@
                 </div>
               </div>
               <div class="form-group">
+<<<<<<< HEAD
                 <label class="form-label" for="reg no">REGISTER NUMBER *</label>
                 <input type="tel" id="reg no" class="form-control" placeholder="register number" required>
+=======
+                <label class="form-label" for="regAltMobile">ALTERNATE NUMBER *</label>
+                <input type="tel" id="regAltMobile" class="form-control" placeholder="Alternate phone number" required>
+>>>>>>> 12ada2f53f0cf5994c14d7bdb12a9b57b45c3e93
               </div>
             </div>
 
@@ -465,6 +470,7 @@
             <span class="upi-badge"><i class="fas fa-bolt"></i> UPI INSTANT</span>
           </div>
 
+<<<<<<< HEAD
           <!-- QR Image Box with Holographic Scanning Effect & Authentic GPay Styling -->
           <div class="qr-code-frame">
             <div class="qr-scanner-line"></div>
@@ -472,6 +478,15 @@
                  src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&ecc=H&margin=10&data=upi%3A%2F%2Fpay%3Fpa%3Dsanjay132726-1%40okicici%26pn%3DSanjay%26mc%3D0000%26tn%3DINTELLIGENZ%25202K26%2520Registration%26am%3D300%26cu%3DINR" 
                  alt="Google Pay QR Code - ₹300 (sanjay132726-1@okicici)" class="qr-image"
                  onerror="this.onerror=null; this.src='https://chart.googleapis.com/chart?cht=qr&chs=350x350&chld=H|1&chl=upi%3A%2F%2Fpay%3Fpa%3Dsanjay132726-1%40okicici%26pn%3DSanjay%26am%3D300%26cu%3DINR';">
+=======
+          <!-- QR Image Box with Holographic Scanning Effect -->
+          <div class="qr-code-frame">
+            <div class="qr-scanner-line"></div>
+            <!-- QR Image with High Quality SVG Fallback -->
+            <img id="paymentQrImage" src="assets/images/payment-qr.png" 
+                 alt="Google Pay QR Code - ₹300" class="qr-image" 
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 300\'><rect width=\'300\' height=\'300\' fill=\'%23ffffff\' rx=\'16\'/><path d=\'M30 30h70v70H30zM130 30h30v30h-30zM200 30h70v70h-70zM50 50v30h30V50zM220 50v30h30V50zM30 130h30v30H30zM80 130h40v20H80zM140 100h20v40h-20zM180 130h40v30h-40zM30 200h70v70H30zM50 220v30h30v-30zM130 200h30v30h-30zM180 200h30v40h-30zM230 200h40v70h-40zM130 250h40v20h-40z\' fill=\'%23000000\'/><circle cx=\'150\' cy=\'150\' r=\'36\' fill=\'%23ffffff\' stroke=\'%23e0e0e0\' stroke-width=\'2\'/><path d=\'M140 145l6 14h6l-6-14z\' fill=\'%234285F4\'/><path d=\'M154 145h-8l-4 14h5z\' fill=\'%2334A853\'/><path d=\'M152 145l6 14h6l-6-14z\' fill=\'%23FBBC05\'/><path d=\'M162 145h-6l-3 14h5z\' fill=\'%23EA4335\'/><text x=\'150\' y=\'205\' font-family=\'sans-serif\' font-size=\'10\' font-weight=\'bold\' fill=\'%2300f0ff\' text-anchor=\'middle\'>SCAN WITH GPAY / PHONEPE</text></svg>';">
+>>>>>>> 12ada2f53f0cf5994c14d7bdb12a9b57b45c3e93
           </div>
 
           <div class="qr-instructions">
@@ -482,7 +497,11 @@
           <div class="upi-copy-box">
             <div class="upi-id-details">
               <span class="upi-label">OFFICIAL UPI ID:</span>
+<<<<<<< HEAD
               <span class="upi-id-text" id="upiIdText">sanjay132726-1@okicici</span>
+=======
+              <span class="upi-id-text" id="upiIdText">7339371752@ybl</span>
+>>>>>>> 12ada2f53f0cf5994c14d7bdb12a9b57b45c3e93
             </div>
             <button type="button" class="btn-copy-upi" id="btnCopyUpi" title="Copy UPI ID">
               <i class="fas fa-copy"></i> <span id="copyBtnText">COPY ID</span>
@@ -731,7 +750,11 @@
       // 4. One-Click Copy UPI ID
       if (btnCopyUpi) {
         btnCopyUpi.addEventListener('click', () => {
+<<<<<<< HEAD
           const upiId = document.getElementById('upiIdText')?.textContent || 'sanjay132726-1@okicici';
+=======
+          const upiId = document.getElementById('upiIdText')?.textContent || '7339371752@ybl';
+>>>>>>> 12ada2f53f0cf5994c14d7bdb12a9b57b45c3e93
           navigator.clipboard.writeText(upiId).then(() => {
             if (copyBtnText) copyBtnText.textContent = 'COPIED!';
             btnCopyUpi.style.borderColor = 'var(--accent-green)';
