@@ -536,10 +536,15 @@
             </div>
           </div>
 
-          <!-- Optional Transaction Reference Field -->
+          <!-- Transaction Reference Field (Required) -->
           <div class="form-group" style="margin-top: 1rem;">
-            <label class="form-label" for="utrNumber" style="font-size: 0.78rem;">12-DIGIT UTR / UPI REF NO. (OPTIONAL)</label>
-            <input type="text" id="utrNumber" class="form-control" placeholder="e.g. 423987654321" maxlength="16">
+            <label class="form-label" for="utrNumber" style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: bold;">
+              12-DIGIT UTR / UPI REF NO. *
+            </label>
+            <input type="text" id="utrNumber" class="form-control" placeholder="Enter 12-digit UTR/Ref No. from GPay/PhonePe" required maxlength="18" pattern="[0-9]{10,18}">
+            <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 0.3rem;">
+              <i class="fas fa-info-circle"></i> Find your 12-digit UTR / UPI Ref No. on your GPay, PhonePe, or Paytm payment receipt.
+            </span>
           </div>
 
           <!-- Submit Button -->
@@ -768,7 +773,7 @@
         });
       }
 
-      // 5. Drag & Drop and Screenshot File Upload Handling
+      // 5. Drag & Drop and Screenshot File Upload Handling with Auto Compression
       if (screenshotInput && dropzoneArea) {
         // Drag over / leave effects
         ['dragenter', 'dragover'].forEach(eventName => {
@@ -805,7 +810,7 @@
         });
       }
 
-      // File selection processor
+      // File selection processor with automatic client-side image compression
       function handleFileSelection(file) {
         if (!file.type.startsWith('image/')) {
           alert('Please select a valid image file (PNG, JPG, JPEG, WEBP).');
@@ -814,18 +819,34 @@
 
         const reader = new FileReader();
         reader.onload = (e) => {
-          currentImageDataUrl = e.target.result;
-          
-          // Display preview
-          if (previewImage) previewImage.src = currentImageDataUrl;
-          if (previewFilename) previewFilename.textContent = file.name;
-          if (previewFilesize) previewFilesize.textContent = formatBytes(file.size);
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const MAX_WIDTH = 900;
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            currentImageDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            
+            // Display preview
+            if (previewImage) previewImage.src = currentImageDataUrl;
+            if (previewFilename) previewFilename.textContent = file.name;
+            if (previewFilesize) previewFilesize.textContent = formatBytes(Math.round(currentImageDataUrl.length * 0.75));
 
-          if (dropzoneDefaultContent) dropzoneDefaultContent.style.display = 'none';
-          if (dropzonePreviewContent) dropzonePreviewContent.style.display = 'flex';
+            if (dropzoneDefaultContent) dropzoneDefaultContent.style.display = 'none';
+            if (dropzonePreviewContent) dropzonePreviewContent.style.display = 'flex';
 
-          // Enable Submit Button
-          enableSubmitButton();
+            // Enable Submit Button
+            enableSubmitButton();
+          };
+          img.src = e.target.result;
         };
         reader.readAsDataURL(file);
       }
@@ -873,7 +894,17 @@
       // 6. Final Submit Payment Proof Handler
       if (btnSubmitPayment && paymentSuccessModal) {
         btnSubmitPayment.addEventListener('click', () => {
-          if (!currentImageDataUrl) return;
+          if (!currentImageDataUrl) {
+            alert('Please attach your payment screenshot first.');
+            return;
+          }
+
+          const utrInputVal = (document.getElementById('utrNumber')?.value || '').trim();
+          if (!utrInputVal) {
+            alert('Please enter your 12-digit UTR / UPI Ref Number to complete submission.');
+            document.getElementById('utrNumber')?.focus();
+            return;
+          }
 
           // Processing UI State
           btnSubmitPayment.disabled = true;
@@ -903,6 +934,76 @@
               document.getElementById('summaryEvents').textContent = selectedEvents.join(', ');
             }
 
+            // Collect registration payload
+            const registrationPayload = {
+              timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+              passId: passId,
+              name: nameVal,
+              email: document.getElementById('regEmail')?.value || '',
+              mobile: document.getElementById('regMobile')?.value || '',
+              regNo: document.getElementById('regNo')?.value || '',
+              gender: document.querySelector('input[name="gender"]:checked')?.value || 'Male',
+              college: collegeVal,
+              dept: document.getElementById('regDept')?.value || '',
+              district: document.getElementById('regDistrict')?.value || '',
+              pincode: document.getElementById('regPincode')?.value || '',
+              selectedEvents: selectedEvents.join(', '),
+              referred: document.querySelector('input[name="referred"]:checked')?.value || 'No',
+              referralSource: document.querySelector('input[name="source"]:checked')?.value || 'Social Media',
+              referralDept: document.getElementById('regRefDept')?.value || '',
+              utrNo: utrInputVal,
+              paymentProof: currentImageDataUrl || ''
+            };
+
+            // Save to Local Database Store for Admin Dashboard & CSV Export
+            try {
+              const existingRegs = JSON.parse(localStorage.getItem('sympo_registrations_v2') || '[]');
+              existingRegs.unshift(registrationPayload);
+              localStorage.setItem('sympo_registrations_v2', JSON.stringify(existingRegs));
+            } catch (e) {
+              console.error('Local Storage saving error:', e);
+            }
+
+            // Sync with Google Sheet / Google Apps Script (Dual Dispatch)
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxX9KcfQxBcTtJW1Js-akpRgvjwJvwHoP4hJLBeJMyc6GqJcORmOQOUNVutGrwSlN-D/exec';
+            if (scriptUrl && scriptUrl.startsWith('http')) {
+              try {
+                // Method 1: Hidden Form Native POST (Guaranteed CORS-free delivery with full image payload)
+                document.getElementById('gs_timestamp').value = registrationPayload.timestamp || '';
+                document.getElementById('gs_passId').value = registrationPayload.passId || '';
+                document.getElementById('gs_name').value = registrationPayload.name || '';
+                document.getElementById('gs_email').value = registrationPayload.email || '';
+                document.getElementById('gs_mobile').value = registrationPayload.mobile || '';
+                document.getElementById('gs_regNo').value = registrationPayload.regNo || '';
+                document.getElementById('gs_gender').value = registrationPayload.gender || '';
+                document.getElementById('gs_college').value = registrationPayload.college || '';
+                document.getElementById('gs_dept').value = registrationPayload.dept || '';
+                document.getElementById('gs_district').value = registrationPayload.district || '';
+                document.getElementById('gs_pincode').value = registrationPayload.pincode || '';
+                document.getElementById('gs_selectedEvents').value = registrationPayload.selectedEvents || '';
+                document.getElementById('gs_referred').value = registrationPayload.referred || '';
+                document.getElementById('gs_referralSource').value = registrationPayload.referralSource || '';
+                document.getElementById('gs_referralDept').value = registrationPayload.referralDept || '';
+                document.getElementById('gs_utrNo').value = registrationPayload.utrNo || '';
+                document.getElementById('gs_paymentProof').value = registrationPayload.paymentProof || '';
+
+                const syncForm = document.getElementById('gsheetSyncForm');
+                syncForm.action = scriptUrl;
+                syncForm.submit();
+                console.log('🚀 Native Form POST submitted to Google Apps Script!');
+
+                // Method 2: Lightweight GET Fallback (Excludes image data to stay under GET URL length limit)
+                const getPayload = { ...registrationPayload, paymentProof: '[Screenshot Attached]' };
+                const paramsStr = new URLSearchParams(getPayload).toString();
+                const getUrl = scriptUrl.includes('?') ? `${scriptUrl}&${paramsStr}` : `${scriptUrl}?${paramsStr}`;
+                fetch(getUrl, { mode: 'no-cors' })
+                  .then(() => console.log('✅ Google Sheet GET Sync dispatched.'))
+                  .catch(err => console.error('GET Sync error:', err));
+              } catch (e) {
+                console.error('Google Sheet Sync Dispatch Error:', e);
+              }
+            }
+
             // Display submitted proof thumbnail
             const submittedProofCard = document.getElementById('submittedProofCard');
             const submittedProofImage = document.getElementById('submittedProofImage');
@@ -930,6 +1031,28 @@
       }
     });
   </script>
+
+  <!-- Hidden Google Sheet Native Sync Form & Iframe -->
+  <iframe name="gsheet_sync_iframe" id="gsheet_sync_iframe" style="display:none;"></iframe>
+  <form id="gsheetSyncForm" action="https://script.google.com/macros/s/AKfycbxX9KcfQxBcTtJW1Js-akpRgvjwJvwHoP4hJLBeJMyc6GqJcORmOQOUNVutGrwSlN-D/exec" method="POST" target="gsheet_sync_iframe" style="display:none;">
+    <input type="hidden" name="timestamp" id="gs_timestamp">
+    <input type="hidden" name="passId" id="gs_passId">
+    <input type="hidden" name="name" id="gs_name">
+    <input type="hidden" name="email" id="gs_email">
+    <input type="hidden" name="mobile" id="gs_mobile">
+    <input type="hidden" name="regNo" id="gs_regNo">
+    <input type="hidden" name="gender" id="gs_gender">
+    <input type="hidden" name="college" id="gs_college">
+    <input type="hidden" name="dept" id="gs_dept">
+    <input type="hidden" name="district" id="gs_district">
+    <input type="hidden" name="pincode" id="gs_pincode">
+    <input type="hidden" name="selectedEvents" id="gs_selectedEvents">
+    <input type="hidden" name="referred" id="gs_referred">
+    <input type="hidden" name="referralSource" id="gs_referralSource">
+    <input type="hidden" name="referralDept" id="gs_referralDept">
+    <input type="hidden" name="utrNo" id="gs_utrNo">
+    <input type="hidden" name="paymentProof" id="gs_paymentProof">
+  </form>
 </body>
 </html>
 

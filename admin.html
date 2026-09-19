@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Registration Desk & Database | INTELLIGENZ 2K26</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    .admin-page {
+      padding: 3rem 0 6rem 0;
+    }
+    .admin-header-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyan);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+    }
+    .admin-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .admin-actions-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .btn-export-excel {
+      background: linear-gradient(135deg, #00f0ff, #00ff66);
+      color: #000;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      padding: 0.86rem 1.6rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+      border-radius: 4px;
+    }
+    .btn-export-excel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.6);
+    }
+    .btn-action-outline {
+      background: rgba(10, 15, 29, 0.9);
+      border: 1px solid var(--border-dim);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      padding: 0.8rem 1.2rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+    .btn-action-outline:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+    .search-box-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+    }
+    .search-box-wrap input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-dim);
+      color: #fff;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+    }
+    .search-box-wrap i {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    .table-container {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      overflow-x: auto;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: rgba(0, 240, 255, 0.08);
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      padding: 1rem;
+      border-bottom: 2px solid var(--border-cyan);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-dim);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+    .data-table tr:hover {
+      background: rgba(0, 240, 255, 0.04);
+    }
+    .pass-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background: rgba(0, 255, 102, 0.12);
+      color: var(--accent-green);
+      border: 1px solid var(--border-green);
+      padding: 0.2rem 0.5rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar & HUD -->
+  <div class="header-wrapper">
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html#hero" class="nav-brand">
+          <i class="fas fa-microchip brand-icon"></i>
+          <span class="brand-title">INTELLIGENZ<span>_ADMIN</span></span>
+        </a>
+        
+        <a href="register.html" class="btn-nav-cta">
+          <i class="fas fa-user-plus"></i> NEW REGISTRATION
+        </a>
+      </div>
+    </nav>
+
+    <!-- HUD Bar -->
+    <div class="hud-status-strip">
+      <div class="hud-status-content">
+        <div class="hud-left">
+          <div class="hud-item">
+            <span class="status-dot"></span>
+            <span class="hud-label">DATABASE DESK:</span>
+            <span class="hud-val green">ONLINE & ACTIVE</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-item">
+            <span class="hud-label">LOCAL CLOCK:</span>
+            <span class="hud-val cyan" id="hudLocalClock">--:--:-- IST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="admin-page">
+    <div class="container">
+      
+      <!-- Top Title Box -->
+      <div class="admin-header-box tactical-box">
+        <div class="admin-title-row">
+          <div>
+            <h1 class="section-title" style="text-align: left; font-size: 2.2rem; margin-bottom: 0.3rem;">
+              SYMPOSIUM <span>DATABASE DESK</span>
+            </h1>
+            <p style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.95rem;">
+              Real-time Participant Management &amp; One-Click Excel / CSV Exporter
+            </p>
+          </div>
+          <button type="button" class="btn-export-excel" id="btnExportCsv">
+            <i class="fas fa-file-excel"></i> DOWNLOAD EXCEL / CSV SHEET
+          </button>
+        </div>
+
+        <!-- Telemetry Stats Strip -->
+        <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+          <div class="metric-card tactical-box" style="padding: 1rem;">
+            <div class="metric-val cyan" id="statTotalRegs">0</div>
+            <div class="metric-lbl">TOTAL PARTICIPANTS</div>
+          </div>
+          <div class="metric-card tactical-box" style="padding: 1rem;">
+            <div class="metric-val green" id="statTotalRevenue">₹0</div>
+            <div class="metric-lbl">COLLECTED BOUNTY</div>
+          </div>
+          <div class="metric-card tactical-box" style="padding: 1rem;">
+            <div class="metric-val" id="statTechEntries">0</div>
+            <div class="metric-lbl">TECH SECTOR REGISTRATIONS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action & Filter Bar -->
+      <div class="admin-actions-bar">
+        <div class="search-box-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search by Name, Mobile, Reg No, College or Event...">
+        </div>
+
+        <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+          <button type="button" class="btn-action-outline" id="btnConfigureWebhook">
+            <i class="fas fa-link"></i> Sync Google Sheet
+          </button>
+          <button type="button" class="btn-action-outline" id="btnClearData" style="color: #ff4757; border-color: rgba(255,71,87,0.4);">
+            <i class="fas fa-trash-alt"></i> Clear Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Registrations Table -->
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>TIMESTAMP</th>
+              <th>PASS ID</th>
+              <th>PARTICIPANT NAME</th>
+              <th>MOBILE</th>
+              <th>REGISTER NO</th>
+              <th>COLLEGE</th>
+              <th>DEPT</th>
+              <th>SELECTED EVENTS</th>
+              <th>UTR REF NO</th>
+              <th>PROOF</th>
+            </tr>
+          </thead>
+          <tbody id="registrationsTbody">
+            <tr>
+              <td colspan="11" style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+                Loading registrations database...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    let allRegistrations = [];
+
+    function loadRegistrations() {
+      try {
+        allRegistrations = JSON.parse(localStorage.getItem('sympo_registrations_v2') || '[]');
+      } catch (e) {
+        allRegistrations = [];
+      }
+      renderRegistrationsTable(allRegistrations);
+    }
+
+    function renderRegistrationsTable(data) {
+      const tbody = document.getElementById('registrationsTbody');
+      
+      // Update Stats
+      document.getElementById('statTotalRegs').textContent = data.length;
+      document.getElementById('statTotalRevenue').textContent = `₹${(data.length * 300).toLocaleString('en-IN')}`;
+      
+      let techCount = 0;
+      data.forEach(r => {
+        if (r.selectedEvents && (r.selectedEvents.includes('Innov') || r.selectedEvents.includes('Prompt') || r.selectedEvents.includes('Paper') || r.selectedEvents.includes('Workshop'))) {
+          techCount++;
+        }
+      });
+      document.getElementById('statTechEntries').textContent = techCount;
+
+      if (data.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="11" style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
+              <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 0.8rem; color: var(--border-cyan); display: block;"></i>
+              No registrations found yet. Fill form on <a href="register.html" style="color: var(--accent-cyan);">register.html</a> to submit records!
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = data.map((r, i) => {
+        const isImage = r.paymentProof && r.paymentProof.startsWith('data:image');
+        const proofHtml = isImage 
+          ? `<button type="button" class="btn-action-outline" style="padding: 0.35rem 0.65rem; font-size: 0.78rem; color: var(--accent-green); border-color: var(--border-green);" onclick="viewScreenshot(${i})"><i class="fas fa-image"></i> View Receipt</button>`
+          : `<span style="color: var(--accent-green); font-size: 0.8rem;"><i class="fas fa-check-circle"></i> ${r.paymentProof || 'Attached'}</span>`;
+
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td style="font-family: var(--font-mono); font-size: 0.8rem;">${r.timestamp || 'N/A'}</td>
+            <td><span class="pass-badge">${r.passId || 'N/A'}</span></td>
+            <td style="font-weight: 700; color: #fff;">${r.name || 'N/A'}</td>
+            <td>${r.mobile || 'N/A'}</td>
+            <td style="font-family: var(--font-mono);">${r.regNo || 'N/A'}</td>
+            <td>${r.college || 'N/A'}</td>
+            <td>${r.dept || 'N/A'}</td>
+            <td style="color: var(--accent-cyan); font-weight: 600;">${r.selectedEvents || 'N/A'}</td>
+            <td style="font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">${r.utrNo || 'N/A'}</td>
+            <td>${proofHtml}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function viewScreenshot(index) {
+      const item = allRegistrations[index];
+      if (item && item.paymentProof && item.paymentProof.startsWith('data:image')) {
+        const modal = document.getElementById('imageLightboxModal');
+        const img = document.getElementById('modalImageDisplay');
+        img.src = item.paymentProof;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Export Data to CSV File (Opens natively in Excel & Google Sheets)
+    function exportToCsv() {
+      if (allRegistrations.length === 0) {
+        alert('No registrations available to export.');
+        return;
+      }
+
+      const headers = [
+        "Timestamp", "Pass ID", "Full Name", "Email Address", "Mobile Number",
+        "Register Number", "Gender", "College Name", "Department", "District",
+        "Pincode", "Selected Events", "Referred?", "Referral Source", "Referral Dept",
+        "UTR Ref Number", "Payment Proof Status"
+      ];
+
+      const rows = allRegistrations.map(r => {
+        const proofStatus = (r.paymentProof && r.paymentProof.startsWith('data:image')) ? '[Screenshot Attached & Verified]' : (r.paymentProof || 'Attached');
+        return [
+          `"${(r.timestamp || '').replace(/"/g, '""')}"`,
+          `"${(r.passId || '').replace(/"/g, '""')}"`,
+          `"${(r.name || '').replace(/"/g, '""')}"`,
+          `"${(r.email || '').replace(/"/g, '""')}"`,
+          `"${(r.mobile || '').replace(/"/g, '""')}"`,
+          `"${(r.regNo || '').replace(/"/g, '""')}"`,
+          `"${(r.gender || '').replace(/"/g, '""')}"`,
+          `"${(r.college || '').replace(/"/g, '""')}"`,
+          `"${(r.dept || '').replace(/"/g, '""')}"`,
+          `"${(r.district || '').replace(/"/g, '""')}"`,
+          `"${(r.pincode || '').replace(/"/g, '""')}"`,
+          `"${(r.selectedEvents || '').replace(/"/g, '""')}"`,
+          `"${(r.referred || '').replace(/"/g, '""')}"`,
+          `"${(r.referralSource || '').replace(/"/g, '""')}"`,
+          `"${(r.referralDept || '').replace(/"/g, '""')}"`,
+          `"${(r.utrNo || '').replace(/"/g, '""')}"`,
+          `"${proofStatus.replace(/"/g, '""')}"`
+        ];
+      });
+
+      const csvString = "\uFEFF" + [headers.join(','), ...rows.map(e => e.join(','))].join('\r\n');
+      const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `INTELLIGENZ_2K26_Participants_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadRegistrations();
+
+      // Export CSV
+      document.getElementById('btnExportCsv').addEventListener('click', exportToCsv);
+
+      // Search Filter
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+          renderRegistrationsTable(allRegistrations);
+          return;
+        }
+
+        const filtered = allRegistrations.filter(r => 
+          (r.name && r.name.toLowerCase().includes(query)) ||
+          (r.mobile && r.mobile.includes(query)) ||
+          (r.regNo && r.regNo.toLowerCase().includes(query)) ||
+          (r.college && r.college.toLowerCase().includes(query)) ||
+          (r.selectedEvents && r.selectedEvents.toLowerCase().includes(query)) ||
+          (r.passId && r.passId.toLowerCase().includes(query))
+        );
+        renderRegistrationsTable(filtered);
+      });
+
+      // Configure Google Webhook
+      const defaultWebUrl = 'https://script.google.com/macros/s/AKfycbxX9KcfQxBcTtJW1Js-akpRgvjwJvwHoP4hJLBeJMyc6GqJcORmOQOUNVutGrwSlN-D/exec';
+      if (!localStorage.getItem('sympo_google_sheet_url')) {
+        localStorage.setItem('sympo_google_sheet_url', defaultWebUrl);
+      }
+
+      document.getElementById('btnConfigureWebhook').addEventListener('click', () => {
+        const currentUrl = localStorage.getItem('sympo_google_sheet_url') || defaultWebUrl;
+        const inputUrl = prompt("Enter your Google Apps Script Web App URL to sync real-time registrations to Google Sheets:", currentUrl);
+        if (inputUrl !== null) {
+          localStorage.setItem('sympo_google_sheet_url', inputUrl.trim());
+          alert("Google Sheet Webhook URL saved successfully!");
+        }
+      });
+
+      // Clear Data
+      document.getElementById('btnClearData').addEventListener('click', () => {
+        if (confirm("Are you sure you want to clear all stored registrations from local desk database?")) {
+          localStorage.removeItem('sympo_registrations_v2');
+          loadRegistrations();
+        }
+      });
+
+      // Local Clock
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById('hudLocalClock').textContent = now.toLocaleTimeString('en-US', { hour12: false }) + ' IST';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
