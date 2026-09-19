@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Intelligence & Protocols | INTELLIGENZ 2K26</title>
+  <meta name="description" content="Detailed Event Intelligence and Operational Rules for INTELLIGENZ 2K26 National Technical Symposium.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .event-detail-page {
+      padding: 4rem 0 6rem 0;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-cyan);
+      background: rgba(0, 240, 255, 0.08);
+      transition: var(--transition);
+    }
+    .back-btn:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 15px var(--accent-cyan);
+    }
+    .detail-hero-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-green);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+      margin-bottom: 2.5rem;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 992px) {
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <div class="header-wrapper">
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html#hero" class="nav-brand">
+          <i class="fas fa-microchip brand-icon"></i>
+          <span class="brand-title">INTELLIGENZ<span>_2K26</span></span>
+        </a>
+        
+        <a href="index.html#categories" class="btn-nav-cta">
+          <i class="fas fa-arrow-left"></i> RETURN TO SECTORS
+        </a>
+      </div>
+    </nav>
+
+    <!-- Sticky HUD Status Bar -->
+    <div class="hud-status-strip">
+      <div class="hud-status-content">
+        <div class="hud-left">
+          <div class="hud-item">
+            <span class="status-dot"></span>
+            <span class="hud-label">STATUS:</span>
+            <span class="hud-val">EVENT INTEL DECLASSIFIED</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-item">
+            <span class="hud-label">LOCAL CLOCK:</span>
+            <span class="hud-val cyan" id="hudLocalClock">--:--:-- IST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Detail Main Container -->
+  <main class="event-detail-page">
+    <div class="container">
+      <a href="index.html#categories" class="back-btn">
+        <i class="fas fa-chevron-left"></i> BACK TO EVENT SECTORS
+      </a>
+
+      <!-- Hero Header Box -->
+      <div class="detail-hero-box tactical-box">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <span class="badge-tactical" id="eventBadge">TECHNICAL ARENA</span>
+          <span class="badge-tactical badge-amber" id="prizeBadge">PRIZE: EXCITING BOUNTY</span>
+        </div>
+        <h1 class="section-title" id="eventTitle" style="text-align: left; font-size: 2.5rem; margin-bottom: 0.8rem;">
+          EVENT INTEL
+        </h1>
+        <p id="eventOverview" style="font-size: 1.15rem; color: var(--text-secondary); max-width: 800px;">
+          Select an event from the main sector dashboard to view full operational directives.
+        </p>
+      </div>
+
+      <div class="detail-grid">
+        <!-- Left Main Intel Column -->
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <!-- Rules & Protocols Block -->
+          <div class="intel-block tactical-box">
+            <h3 class="intel-block-title"><i class="fas fa-clipboard-check"></i> OPERATIONAL RULES &amp; PROTOCOLS</h3>
+            <ul class="intel-list" id="eventRules">
+              <li><i class="fas fa-terminal"></i> Loading rules database...</li>
+            </ul>
+          </div>
+
+          <!-- Scoring & Judging Criteria Block -->
+          <div class="intel-block tactical-box">
+            <h3 class="intel-block-title"><i class="fas fa-chart-bar"></i> JUDGING CRITERIA &amp; EVALUATION</h3>
+            <ul class="intel-list" id="eventJudging">
+              <li><i class="fas fa-chart-line"></i> Loading scoring matrix...</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Intel Column (Sidebar) -->
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <!-- Quick Meta Card -->
+          <div class="intel-block tactical-box">
+            <h3 class="intel-block-title"><i class="fas fa-info-circle"></i> SQUAD &amp; ARENA INTEL</h3>
+            <ul class="intel-list" id="eventMeta">
+              <li><i class="fas fa-users"></i> <strong>Squad Size:</strong> <span id="metaSquad">1-4 Members</span></li>
+              <li><i class="fas fa-clock"></i> <strong>Duration:</strong> <span id="metaDuration">Timed Rounds</span></li>
+              <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> <span id="metaLocation">Main Tech Block</span></li>
+            </ul>
+          </div>
+
+          <!-- Coordinators Card -->
+          <div class="intel-block tactical-box">
+            <h3 class="intel-block-title"><i class="fas fa-user-shield"></i> COMMAND OFFICERS</h3>
+            <div id="eventCoordinators" style="font-size: 0.95rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.8rem;">
+              <div><strong>Faculty Lead:</strong> Dr. A. Sharma</div>
+              <div><strong>Student Lead:</strong> K. Rajesh (+91 98765 43210)</div>
+            </div>
+          </div>
+
+          <!-- CTA Register -->
+          <a href="index.html#registration" class="btn-primary" style="justify-content: center; width: 100%;">
+            <i class="fas fa-shield-alt"></i> REGISTER FOR THIS EVENT
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 INTELLIGENZ 2K26. AI&amp;DS DEPARTMENT. ALL RIGHTS RESERVED.</div>
+        <div>Developed by AI payalunga</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script to load dynamic event details based on URL parameter -->
+  <script>
+    const EVENT_DATABASE = {
+      'project-expo': {
+        title: 'INNOV EXPO',
+        badge: 'TECHNICAL ARENA',
+        prize: 'Trophies & Cash Rewards',
+        overview: 'Showcase working software applications, AI/ML models, IoT devices, or neural network hardware prototypes to an expert panel of industry judges.',
+        rules: [
+          'Working demonstration or prototype is mandatory for all team entries.',
+          'Bring your own laptops and hardware kits; power outlets & Wi-Fi will be provided.',
+          'Each team will get 10 minutes for project presentation followed by 5 minutes Q&A with judges.',
+          'Projects must be original work developed by team members.'
+        ],
+        judging: [
+          'Innovation & Creativity: 30%',
+          'Technical Complexity & Execution: 30%',
+          'Practical Utility & Real-World Impact: 20%',
+          'Q&A Defense & Presentation Skill: 20%'
+        ],
+        squad: '1 - 4 Members',
+        duration: '3 Hours',
+        location: 'Main Auditorium & Hardware Lab',
+        coordinators: 'Prof. R. Varma (Faculty) | Alex Mercer (+91 98765 11111)'
+      },
+      'prompt-a-thon': {
+        title: 'Prompt-a-thon',
+        badge: 'GENERATIVE AI ARENA',
+        prize: 'Trophies & Cash Rewards',
+        overview: 'Master Large Language Models and Generative Diffusion models to craft hyper-accurate prompts, solve complex code bugs, and generate targeted artwork under strict timed sprints.',
+        rules: [
+          'Live evaluation conducted on provided LLM and Diffusion sandboxes.',
+          'Pre-written prompts or external browser extensions are strictly prohibited.',
+          'Sprints divided into 3 rounds: Code Synthesis, Visual Generation, and Complex Logic Prompting.',
+          'Time speed bonus points awarded for fastest accurate prompt submission.'
+        ],
+        judging: [
+          'Accuracy & Output Matching: 40%',
+          'Prompt Efficiency & Length Optimization: 30%',
+          'Creative Logic & Speed Bonus: 30%'
+        ],
+        squad: 'Solo Operative',
+        duration: '1.5 Hours',
+        location: 'AI High-Performance Lab 1',
+        coordinators: 'Dr. S. Kanth (Faculty) | Priya Dharshini (+91 98765 22222)'
+      },
+      'paper-presentation': {
+        title: 'PAPER TALKS',
+        badge: 'RESEARCH ARENA',
+        prize: 'Trophies & Cash Rewards',
+        overview: 'Present original research papers on cutting-edge computer science domains including Deep Learning, Quantum Computing, , and Autonomous Systems.',
+        rules: [
+          'Abstract must be submitted prior to the presentation round.',
+          'Maximum 10 slides per deck; 8 minutes presentation + 4 minutes jury Q&A.',
+          'IEEE format mandatory for all submitted papers.',
+          'Plagiarism score must be below 15%.'
+        ],
+        judging: [
+          'Research Originality & Domain Value: 35%',
+          'Technical Methodology & Dataset Analysis: 30%',
+          'Slide Quality, Speech & Defense: 35%'
+        ],
+        squad: '1 - 2 Members',
+        duration: '2 Hours',
+        location: 'Conference Seminar Hall B',
+        coordinators: 'Dr. N. Ramesh (Faculty) | Vignesh K. (+91 98765 33333)'
+      },
+      'workshop': {
+        title: 'Hands-on Technical Workshop',
+        badge: 'LEARNING ARENA',
+        prize: 'CERTIFICATION INCLUDED',
+        overview: 'Intensive hands-on technical workshop conducted by industry AI leaders covering modern Transformer architectures, PyTorch pipelines, and LLM fine-tuning.',
+        rules: [
+          'Open to all registered INTELLIGENZ 2K26 pass holders.',
+          'Laptops recommended for hands-on execution on Google Colab / Kaggle.',
+          'Interactive Q&A and verified digital certificate issued at completion.'
+        ],
+        judging: [
+          'Practical Code Execution: 50%',
+          'Interactive Assignment Completion: 50%'
+        ],
+        squad: 'Individual Entry',
+        duration: '2.5 Hours',
+        location: 'Central IT Seminar Hall',
+        coordinators: 'Prof. M. Suresh (Faculty) | Kavya S. (+91 98765 44444)'
+      },
+      'esport-gaming': {
+        title: 'Esport Gaming (Free Fire)',
+        badge: 'NON-TECH ARENA',
+        prize: 'existing prices',
+        overview: 'High-octane squad Battle Royale tournament in Free Fire. Drop into custom rooms, coordinate tactical strikes, and claim Booyah!',
+        rules: [
+          'Matches played on Mobile Devices only (Emulators strictly prohibited).',
+          'Custom room ID and password shared 15 minutes before match start.',
+          'Any hack/mod usage will lead to immediate squad disqualification and ban.',
+          'Points awarded based on survival rank and kill count.'
+        ],
+        judging: [
+          'Survival Placement Rank: 50%',
+          'Total Kill Bounty Points: 50%'
+        ],
+        squad: '4 Operatives (Squad)',
+        duration: 'Knockout Battle',
+        location: 'Gaming Arena',
+        coordinators: 'Prof. T. David (Faculty) | Rahul V. (+91 98765 55555)'
+      },
+      'ipl-auction': {
+        title: 'IPL Tactical Auction',
+        badge: 'STRATEGY ARENA',
+        prize: 'existing prices',
+        overview: 'Real-time virtual cricket auction. Manage squad budgets, analyze player ratings & statistics, and out-bid competing squads to build the ultimate fantasy XI.',
+        rules: [
+          'Virtual purse allocated equally to all teams at start.',
+          'Minimum squad composition rules must be satisfied (Batsmen, Bowlers, All-rounders, Overseas cap).',
+          'Round 1: Screening Quiz; Round 2: Live Bidding War.',
+          'Bids once made cannot be withdrawn.'
+        ],
+        judging: [
+          'Overall Roster Balance & Star Power: 40%',
+          'Statistical Team Rating Score: 35%',
+          'Budget Efficiency & Purse Remaining: 25%'
+        ],
+        squad: '2 - 3 Operatives',
+        duration: 'Bidding Rounds',
+        location: 'Strategy Hall 4',
+        coordinators: 'Prof. G. Balaji (Faculty) | Karthik R. (+91 98765 66666)'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const eventId = params.get('event') || 'project-expo';
+      const data = EVENT_DATABASE[eventId] || EVENT_DATABASE['project-expo'];
+
+      document.getElementById('eventTitle').textContent = data.title;
+      document.getElementById('eventBadge').textContent = data.badge;
+      document.getElementById('prizeBadge').textContent = data.prize;
+      document.getElementById('eventOverview').textContent = data.overview;
+      document.getElementById('metaSquad').textContent = data.squad;
+      document.getElementById('metaDuration').textContent = data.duration;
+      document.getElementById('metaLocation').textContent = data.location;
+      document.getElementById('eventCoordinators').innerHTML = data.coordinators;
+
+      // Rules list
+      const rulesList = document.getElementById('eventRules');
+      rulesList.innerHTML = data.rules.map(r => `<li><i class="fas fa-chevron-right"></i> ${r}</li>`).join('');
+
+      // Judging list
+      const judgingList = document.getElementById('eventJudging');
+      judgingList.innerHTML = data.judging.map(j => `<li><i class="fas fa-check-circle"></i> ${j}</li>`).join('');
+
+      // Clock
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById('hudLocalClock').textContent = now.toLocaleTimeString('en-US', { hour12: false }) + ' IST';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
