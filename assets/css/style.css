@@ -2398,7 +2398,6 @@ textarea.form-control {
   z-index: 5;
 }
 
-<<<<<<< HEAD
 .gpay-center-badge {
   position: absolute;
   top: 50%;
@@ -2420,9 +2419,6 @@ textarea.form-control {
   width: 24px;
   height: 24px;
 }
-
-=======
->>>>>>> 12ada2f53f0cf5994c14d7bdb12a9b57b45c3e93
 @keyframes scanMove {
   0% { top: 4%; }
   100% { top: 92%; }
